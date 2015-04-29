@@ -29,6 +29,7 @@ Authorize = {
           "StateProvince":None
         },
         "CVDataProvided":"NotSet",
+        "CVData":None,
         "IdentificationInformation":None
       },
       "DeviceSerialNumber":None,
@@ -55,7 +56,7 @@ Authorize = {
 Capture = {"$type": "Capture,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",
            "ApplicationProfileId": "4084",
            "BankcardCapture": {
-                "$type":"BankcardUndoPro,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard/Pro",
+                "$type":"BankcardCapture,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard/Pro",
                 "Amount":None,
                 "ChargeType":None,
                 "Level2Data":None,
@@ -72,3 +73,13 @@ Undo = {"$type": "Undo,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",
             "ForceVoid":None,
             "TransactionCode":None}
         }
+
+Resubmit = {"$type": "ResubmitTransaction,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",            
+            "Transaction":
+                {"$type":"Resubmit,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard",
+                 "TransactionId":None,
+                 "CVV":None,
+                 "ResubmitReason":"NotSet",
+                 "PaymentAuthorizationResponse":None},
+            "ApplicationProfileId": "4084"
+            }

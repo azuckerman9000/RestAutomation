@@ -24,7 +24,7 @@ def popSaveReq(req_dict,inputs):
 
 def Authorize(base_url,SessionToken,ServiceId,**kwargs):
     body = setReq(TPSSchema.Authorize,**kwargs)
-    url = base_url + "Txn/" + ServiceId
+    url = base_url + "TPS.svc/" + ServiceId
     try:
         r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
         logger.Log(r,"Authorize")
@@ -38,7 +38,7 @@ def Authorize(base_url,SessionToken,ServiceId,**kwargs):
 def AuthorizeAndCapture(base_url,SessionToken,ServiceId,**kwargs):
     body = setReq(TPSSchema.Authorize,**kwargs)
     body["$type"] = "AuthorizeAndCaptureTransaction,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest"
-    url = base_url + "Txn/" + ServiceId
+    url = base_url + "TPS.svc/" + ServiceId
     try:
         r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
         logger.Log(r,"AuthorizeAndCapture")
@@ -53,7 +53,7 @@ def Capture(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
     if TxnGUID == None:
         return
     body = setReq(TPSSchema.Capture,**kwargs)
-    url = base_url + "Txn/" + ServiceId + "/" + TxnGUID
+    url = base_url + "TPS.svc/" + ServiceId + "/" + TxnGUID
     try:
         r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
         logger.Log(r,"Capture")
@@ -68,7 +68,7 @@ def Undo(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
     if TxnGUID == None:
         return
     body = setReq(TPSSchema.Undo,**kwargs)
-    url = base_url + "Txn/" + ServiceId + "/" + TxnGUID
+    url = base_url + "TPS.svc/" + ServiceId + "/" + TxnGUID
     try:
         r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
         logger.Log(r,"Undo")
@@ -77,4 +77,22 @@ def Undo(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
         return json.loads(r.text)["TransactionId"]                       
     except requests.exceptions.HTTPError as Error:
         print("--Undo Returned Error: %s." % Error)            
+        return
+    
+def Resubmit(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
+    if TxnGUID == None:
+        return
+    kwargs["TransactionId"] = TxnGUID        
+    body = setReq(TPSSchema.Resubmit,**kwargs)
+    if "PaymentAuthorizationResponse" in kwargs.keys():
+        body["Transaction"]["$type"] = "Resubmit3DSecure,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard"    
+    url = base_url + "TPS.svc/" + ServiceId
+    try:
+        r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
+        logger.Log(r,"Resubmit")
+        r.raise_for_status()
+        print("--Resubmit returned successful")
+        return json.loads(r.text)["TransactionId"]               
+    except requests.exceptions.HTTPError as Error:
+        print("--Resubmit Returned Error: %s." % Error)            
         return

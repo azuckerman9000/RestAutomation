@@ -38,7 +38,7 @@ def SaveMerchantProfiles(base_url,SessionToken,**kwargs):
         return
     
 def GetMerchantProfiles(base_url,SessionToken):
-    url = base_url + "SvcInfo/merchProfile"
+    url = base_url + "SIS.svc/merchProfile"
     try:
         r = requests.get(url,auth = HTTPBasicAuth(SessionToken,''),headers = {"content-type":"application/json"}, verify = False)
         logger.Log(r,"GetMerchantProfiles")
@@ -73,7 +73,7 @@ def DeleteMerchantProfile(base_url,SessionToken,MerchantProfileId,ServiceId):
         return
     
 def GetServiceInformation(base_url,SessionToken):
-    url = base_url + "SvcInfo/serviceInformation"
+    url = base_url + "SIS.svc/serviceInformation"
     try:
         r = requests.get(url,auth = HTTPBasicAuth(SessionToken,''),headers = {"content-type":"application/json"}, verify = False)
         logger.Log(r,"GetServiceInformation")
