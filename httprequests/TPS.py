@@ -1,6 +1,6 @@
 from schemamodels import TPSSchema
 from miscutils import logger
-import json, requests
+import json, requests, copy
 from requests.auth import HTTPBasicAuth
 
 # Request Builder and Utility Functions
@@ -23,7 +23,12 @@ def popSaveReq(req_dict,inputs):
 # HTTP Request Functions
 
 def Authorize(base_url,SessionToken,ServiceId,**kwargs):
-    body = setReq(TPSSchema.Authorize,**kwargs)
+    request_template = copy.deepcopy(getattr(TPSSchema,"Authorize"))       
+    body = setReq(request_template,**kwargs)
+    if "HouseNumber" in kwargs.keys():
+        del body["Transaction"]["TenderData"]["CardSecurityData"]["AVSData"]
+    else:
+        del body["Transaction"]["TenderData"]["CardSecurityData"]["InternationalAVSData"]
     url = base_url + "TPS.svc/" + ServiceId
     try:
         r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
@@ -36,7 +41,12 @@ def Authorize(base_url,SessionToken,ServiceId,**kwargs):
         return
     
 def AuthorizeAndCapture(base_url,SessionToken,ServiceId,**kwargs):
-    body = setReq(TPSSchema.Authorize,**kwargs)
+    request_template = copy.deepcopy(getattr(TPSSchema,"Authorize"))  
+    body = setReq(request_template,**kwargs)
+    if "HouseNumber" in kwargs.keys():
+        del body["Transaction"]["TenderData"]["CardSecurityData"]["AVSData"]
+    else:
+        del body["Transaction"]["TenderData"]["CardSecurityData"]["InternationalAVSData"]
     body["$type"] = "AuthorizeAndCaptureTransaction,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest"
     url = base_url + "TPS.svc/" + ServiceId
     try:
@@ -52,7 +62,8 @@ def AuthorizeAndCapture(base_url,SessionToken,ServiceId,**kwargs):
 def Capture(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
     if TxnGUID == None:
         return
-    body = setReq(TPSSchema.Capture,**kwargs)
+    request_template = copy.deepcopy(getattr(TPSSchema,"Capture")) 
+    body = setReq(request_template,**kwargs)
     url = base_url + "TPS.svc/" + ServiceId + "/" + TxnGUID
     try:
         r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
@@ -67,7 +78,8 @@ def Capture(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
 def Undo(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
     if TxnGUID == None:
         return
-    body = setReq(TPSSchema.Undo,**kwargs)
+    request_template = copy.deepcopy(getattr(TPSSchema,"Undo")) 
+    body = setReq(request_template,**kwargs)
     url = base_url + "TPS.svc/" + ServiceId + "/" + TxnGUID
     try:
         r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
@@ -82,8 +94,9 @@ def Undo(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
 def Resubmit(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
     if TxnGUID == None:
         return
-    kwargs["TransactionId"] = TxnGUID        
-    body = setReq(TPSSchema.Resubmit,**kwargs)
+    kwargs["TransactionId"] = TxnGUID
+    request_template = copy.deepcopy(getattr(TPSSchema,"Resubmit"))        
+    body = setReq(request_template,**kwargs)
     if "PaymentAuthorizationResponse" in kwargs.keys():
         body["Transaction"]["$type"] = "Resubmit3DSecure,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard"    
     url = base_url + "TPS.svc/" + ServiceId
