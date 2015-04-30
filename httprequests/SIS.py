@@ -5,7 +5,7 @@ from miscutils import logger
 
 # Request Builder and Utility Functions
 def setSaveReq(**kwargs):
-    mreq = SISSchema.SaveMerch
+    mreq = SISSchema.SaveMerchantProfiles
     if len(kwargs.keys()) != 0:
         mreq = [popSaveReq(mreq[0],kwargs)]
     return mreq
@@ -22,11 +22,11 @@ def popSaveReq(req_dict,inputs):
 
 # SIS HTTP Requests
         
-def SaveMerchantProfiles(base_url,SessionToken,**kwargs):
+def SaveMerchantProfiles(base_url,SessionToken,**kwargs):    
     body = setSaveReq(**kwargs)
     MerchantProfileId = body[0]["ProfileId"]
     ServiceId = body[0]["ServiceId"]
-    url = base_url + "SvcInfo/merchProfile?serviceId=" + ServiceId
+    url = base_url + "SIS.svc/merchProfile?serviceId=" + ServiceId
     try:
         r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)
         logger.Log(r,"SaveMerchantProfiles")
@@ -49,7 +49,7 @@ def GetMerchantProfiles(base_url,SessionToken):
         return
     
 def GetMerchantProfile(base_url,SessionToken,MerchantProfileId,ServiceId):
-    url = base_url + "SvcInfo/merchProfile/" + MerchantProfileId + "?serviceId=" + ServiceId
+    url = base_url + "SIS.svc/merchProfile/" + MerchantProfileId + "?serviceId=" + ServiceId
     try:
         r = requests.get(url,auth = HTTPBasicAuth(SessionToken,''),headers = {"content-type":"application/json"}, verify = False)
         logger.Log(r,"GetMerchantProfile")
@@ -61,7 +61,7 @@ def GetMerchantProfile(base_url,SessionToken,MerchantProfileId,ServiceId):
         return
     
 def DeleteMerchantProfile(base_url,SessionToken,MerchantProfileId,ServiceId):
-    url = base_url + "SvcInfo/merchProfile/" + MerchantProfileId + "?serviceId=" + ServiceId
+    url = base_url + "SIS.svc/merchProfile/" + MerchantProfileId + "?serviceId=" + ServiceId
     try:
         r = requests.delete(url,auth = HTTPBasicAuth(SessionToken,''),headers = {"content-type":"application/json"}, verify = False)
         logger.Log(r,"DeleteMerchantProfile")

@@ -21,14 +21,19 @@ def popSaveReq(req_dict,inputs):
     return temp_dict
 
 # HTTP Request Functions
-
-def Authorize(base_url,SessionToken,ServiceId,**kwargs):
+def Authorize(base_url,SessionToken,ServiceId,AppConfig=False,**kwargs):
     request_template = copy.deepcopy(getattr(TPSSchema,"Authorize"))       
     body = setReq(request_template,**kwargs)
-    if "HouseNumber" in kwargs.keys():
+    
+    if "HouseNumber" in kwargs.keys(): #Checks if HouseNumber is passed in request in order to use IntlAVSData instead of AVSData
         del body["Transaction"]["TenderData"]["CardSecurityData"]["AVSData"]
     else:
         del body["Transaction"]["TenderData"]["CardSecurityData"]["InternationalAVSData"]
+    
+    if AppConfig is False: #Checks if AppConfigData is set for eServices relating to EMV Data
+        del body["Transaction"]["ApplicationConfigurationData"]
+        del body["Transaction"]["TenderData"]["EMVData"]
+        
     url = base_url + "TPS.svc/" + ServiceId
     try:
         r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
@@ -40,13 +45,19 @@ def Authorize(base_url,SessionToken,ServiceId,**kwargs):
         print("--Authorize Returned Error: %s." % Error)            
         return
     
-def AuthorizeAndCapture(base_url,SessionToken,ServiceId,**kwargs):
+def AuthorizeAndCapture(base_url,SessionToken,ServiceId,AppConfig=False,**kwargs):
     request_template = copy.deepcopy(getattr(TPSSchema,"Authorize"))  
     body = setReq(request_template,**kwargs)
-    if "HouseNumber" in kwargs.keys():
+    
+    if "HouseNumber" in kwargs.keys(): #Checks if HouseNumber is passed in request in order to use IntlAVSData instead of AVSData
         del body["Transaction"]["TenderData"]["CardSecurityData"]["AVSData"]
     else:
         del body["Transaction"]["TenderData"]["CardSecurityData"]["InternationalAVSData"]
+        
+    if AppConfig is False: #Checks if AppConfigData is set for eServices relating to EMV Data
+        del body["Transaction"]["ApplicationConfigurationData"]
+        del body["Transaction"]["TenderData"]["EMVData"]
+        
     body["$type"] = "AuthorizeAndCaptureTransaction,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest"
     url = base_url + "TPS.svc/" + ServiceId
     try:
@@ -97,8 +108,10 @@ def Resubmit(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
     kwargs["TransactionId"] = TxnGUID
     request_template = copy.deepcopy(getattr(TPSSchema,"Resubmit"))        
     body = setReq(request_template,**kwargs)
-    if "PaymentAuthorizationResponse" in kwargs.keys():
-        body["Transaction"]["$type"] = "Resubmit3DSecure,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard"    
+    
+    if "PaymentAuthorizationResponse" in kwargs.keys(): #If PaRes is passed in request, change type to 3Dsecure Resubmit
+        body["Transaction"]["$type"] = "Resubmit3DSecure,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard"
+            
     url = base_url + "TPS.svc/" + ServiceId
     try:
         r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        

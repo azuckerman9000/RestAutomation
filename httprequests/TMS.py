@@ -1,6 +1,6 @@
 from schemamodels import TMSSchema
 from miscutils import logger
-import json, requests
+import json, requests, copy
 from requests.auth import HTTPBasicAuth
 
 # Request Builder and Utility Functions
@@ -23,8 +23,9 @@ def popSaveReq(req_dict,inputs):
 # HTTP Request Functions
 
 def QueryTransactionsSummary(base_url,SessionToken,**kwargs):
-    body = setQueryReq(TMSSchema.TxnSummary,**kwargs)
-    url = base_url + "DataServices/TMS/transactionsSummary"
+    request_template = copy.deepcopy(getattr(TMSSchema,"QueryTransactionsSummary"))  
+    body = setQueryReq(request_template,**kwargs)
+    url = base_url + "DataServices/TMS.svc/transactionsSummary"
     try:
         r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
         logger.Log(r,"QueryTransactionsSummary")
@@ -35,8 +36,9 @@ def QueryTransactionsSummary(base_url,SessionToken,**kwargs):
         return
     
 def QueryBatch(base_url,SessionToken,**kwargs):
-    body = setQueryReq(TMSSchema.Batch,**kwargs)
-    url = base_url + "DataServices/TMS/batch"
+    request_template = copy.deepcopy(getattr(TMSSchema,"QueryBatch"))
+    body = setQueryReq(request_template,**kwargs)
+    url = base_url + "DataServices/TMS.svc/batch"
     try:
         r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
         logger.Log(r,"QueryBatch")

@@ -1,4 +1,4 @@
-SaveMerch =  [{
+SaveMerchantProfiles =  [{
         "$type": "MerchantProfile, http://schemas.evosnap.com/CWS/v2.0/ServiceInformation",
         "ProfileId": "Auto_SOAP_Ecommerce_A",
         "ServiceId": "1257A00001",

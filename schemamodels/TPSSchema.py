@@ -5,7 +5,21 @@ Authorize = {
   "Transaction":{
     "$type":"BankcardTransactionPro,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard/Pro",
     "Addendum":None,
-    "ApplicationConfigurationData":None,
+    "ApplicationConfigurationData":{
+        "ApplicationAttended":True,
+        "ApplicationLocation":"OnPremises",
+        "HardwareType":"PC",
+        "PINCapability":"PINNotSupported",
+        "ReadCapability":"MSRKeyICC",
+        "EMVTerminalData":{
+            "CardDataOutputCapability":"ICC",
+            "CardRetentionCapability":True,
+            "CardholderAuthenticationCapability":"PIN",
+            "PINMaxCharacters":"P12",
+            "TerminalOperator":"CardAcceptorOp",
+            "TerminalOutputCapability":"PrintDisplay"
+            }        
+        },
     "CustomerData":{
       "BillingData":None,
       "CustomerId":None,
@@ -58,7 +72,40 @@ Authorize = {
       "SecurePaymentAccountData":None,
       "SwipeStatus":None,
       "CardholderIdentification":None,
-      "CardholderIdType":"NotSet"
+      "CardholderIdType":"NotSet",
+      "EMVData":{
+         "ApplicationId":"A0000000041010",
+         "ApplicationInterchangeProfile":"5800",
+         "ApplicationTransactionCount":"000D",
+         "ApplicationUsageControl":"FF00",
+         "ApplicationVersionNumber":None,
+         "AuthorizationAmount":"000000000700",
+         "AuthorizationResponseCode":"00",
+         "CVMList":"000000000000000042015E0342031F03",
+         "CVMResults":"5E0300",
+         "CardAuthenticationReliabilityIndex":None,
+         "CardAuthenticationResultsCode":None,
+         "CashBackAmount":None,
+         "ChipConditionCode":None,
+         "CryptogramInformationData":"40",
+         "Cryptogram":"8C270F78A4CE5260",
+         "InterfaceDeviceSerialNumber":None,
+         "IssuerActionDefault":"F050040800",
+         "IssuerActionDenial":None,
+         "IssuerActionOnline":None,
+         "IssuerApplicationData":"0110A00001220000000000000000000000FF",
+         "IssuerScriptResults":None,
+         "LocalTransactionDate":"141028",
+         "TerminalCapability":"E0F8C8",
+         "TerminalCountryCode":"840",
+         "TerminalType":None,
+         "TerminalVerifyResult":"42C0008000",
+         "TransactionCategoryCode":None,
+         "CurrencyCode":"840",
+         "SequenceNumber":None,
+         "TransactionType":"0",
+         "UnpredictableNumber":"D863A470"         
+            }
     },
     "TransactionData":{
       "AccountType":"NotSet",
