@@ -33,7 +33,8 @@ Authorize = {
         "CardType":"Visa",
         "CardholderName":"John Doe",
         "Expire":"1215",
-        "PAN":"4003000123456781"
+        "PAN":"4003000123456781",
+        "Track2Data":None
         },
       "CardSecurityData":{
         "AVSData":{
@@ -117,7 +118,7 @@ Authorize = {
       "EntryMode":"Keyed",
       "Reference":"jdhfjd",
       "TransactionCode":"Override",
-      "TransactionDateTime":"2013-04-03T13:50:16",
+      "TransactionDateTime":"2015-04-03T13:50:16",
       "IS3DSecure":False,
       "CardholderAuthenticationEntity":"NotSet",
       "CardPresence":False
@@ -154,3 +155,23 @@ Resubmit = {"$type": "ResubmitTransaction,http://schemas.evosnap.com/CWS/v2.0/Tr
                  "PaymentAuthorizationResponse":None},
             "ApplicationProfileId": "4084"
             }
+
+RequestKey = {"$type":"KeyTransaction,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",
+                "Transaction":{
+                    "$type":"EncryptionTransaction,http://schemas.evosnap.com/CWS/v2.0/Transactions/Encryption",
+                    "TenderData":{
+                        "ChipConditionCode":"testcode",
+                        "EntryMode":"ContactlessMChipOrSmartCard"
+                        },
+                    "TransactionData":{
+                        "Terminal":{
+                            "SerialNumber":"123-adgh",
+                            "VendorName":"HappyPOS"
+                            },
+                        "Amount":"0.00",
+                        "CurrencyCode":"NotSet"                        
+                        }
+                    },
+              "ApplicationProfileId": None,
+              "MerchantProfileId":None
+             }

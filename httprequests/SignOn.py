@@ -18,7 +18,7 @@ def SignOnWithToken(base_url,IdentityToken):
         return
 
 def SignOnWithUsernamePassword(base_url,Username,Password,ServiceKey):
-    url = base_url + "SvcInfo/user?servicekey=" + ServiceKey
+    url = base_url + "SIS.svc/user?servicekey=" + ServiceKey
     try:
         r = requests.get(url,auth = HTTPBasicAuth(Username,Password),headers = {"content-type":"application/json"}, verify = False)
         logger.Log(r,"SignOnWithUsernamePassword")
@@ -30,7 +30,7 @@ def SignOnWithUsernamePassword(base_url,Username,Password,ServiceKey):
         return
     
 def DelegatedSignOn(base_url,DelegatedSK,IdentityToken):
-    url = base_url + "SvcInfo/delegated"
+    url = base_url + "SIS.svc/delegated"
     body = {"onBehalfOfServiceKey":DelegatedSK}
     try:
         r = requests.post(url, data = json.dumps(body), auth = HTTPBasicAuth(IdentityToken,""),headers = {"content-type":"application/json"}, verify = False)
@@ -56,7 +56,7 @@ def ChangePassword(base_url,Username,Password,ServiceKey,NewPassword):
         return
     
 def GetUserExpiration(base_url,Username,Password,ServiceKey):
-    url = base_url + "SvcInfo/user/" + Username + "/expiration?ServiceKey=" + ServiceKey
+    url = base_url + "SIS.svc/user/" + Username + "/expiration?ServiceKey=" + ServiceKey
     try:
         r = requests.get(url,auth = HTTPBasicAuth(Username,Password),headers = {"content-type":"application/json"}, verify = False)
         logger.Log(r,"GetUserExpiration")

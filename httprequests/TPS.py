@@ -122,3 +122,17 @@ def Resubmit(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
     except requests.exceptions.HTTPError as Error:
         print("--Resubmit Returned Error: %s." % Error)            
         return
+    
+def RequestKey(base_url,SessionToken,ServiceId,**kwargs):
+    request_template = copy.deepcopy(getattr(TPSSchema,"RequestKey"))        
+    body = setReq(request_template,**kwargs)
+    
+    url = base_url + "TLS/REST/SecureMessaging.svc/" + ServiceId
+    try:
+        r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
+        logger.Log(r,"RequestKey")
+        r.raise_for_status()
+        print("--RequestKey returned successful")                       
+    except requests.exceptions.HTTPError as Error:
+        print("--RequestKey Returned Error: %s." % Error)            
+        return
