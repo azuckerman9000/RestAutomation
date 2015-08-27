@@ -23,7 +23,7 @@ def popSaveReq(req_dict,inputs):
 # HTTP Request Functions
 
 def QueryTransactionsSummary(base_url,SessionToken,**kwargs):
-    request_template = copy.deepcopy(getattr(TMSSchema,"QueryTransactionsSummary"))  
+    request_template = copy.deepcopy(getattr(TMSSchema,"TxnSummary"))  
     body = setQueryReq(request_template,**kwargs)
     url = base_url + "DataServices/TMS.svc/transactionsSummary"
     try:

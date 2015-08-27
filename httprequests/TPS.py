@@ -14,21 +14,16 @@ def setReq(schema,**kwargs):
 def popSaveReq(req_dict,inputs):
     temp_dict = req_dict
     for key, value in req_dict.items():
-        if isinstance(value,dict):
+        if isinstance(value,dict):                              
             popSaveReq(value,inputs)
-        elif key in inputs.keys():
-            temp_dict[key] = inputs[key]
+        if key in inputs.keys():           
+            temp_dict[key] = inputs[key]       
     return temp_dict
 
 # HTTP Request Functions
 def Authorize(base_url,SessionToken,ServiceId,AppConfig=False,**kwargs):
     request_template = copy.deepcopy(getattr(TPSSchema,"Authorize"))       
     body = setReq(request_template,**kwargs)
-    
-    if "HouseNumber" in kwargs.keys(): #Checks if HouseNumber is passed in request in order to use IntlAVSData instead of AVSData
-        del body["Transaction"]["TenderData"]["CardSecurityData"]["AVSData"]
-    else:
-        del body["Transaction"]["TenderData"]["CardSecurityData"]["InternationalAVSData"]
     
     if AppConfig is False: #Checks if AppConfigData is set for eServices relating to EMV Data
         del body["Transaction"]["ApplicationConfigurationData"]
@@ -48,12 +43,7 @@ def Authorize(base_url,SessionToken,ServiceId,AppConfig=False,**kwargs):
 def AuthorizeAndCapture(base_url,SessionToken,ServiceId,AppConfig=False,**kwargs):
     request_template = copy.deepcopy(getattr(TPSSchema,"Authorize"))  
     body = setReq(request_template,**kwargs)
-    
-    if "HouseNumber" in kwargs.keys(): #Checks if HouseNumber is passed in request in order to use IntlAVSData instead of AVSData
-        del body["Transaction"]["TenderData"]["CardSecurityData"]["AVSData"]
-    else:
-        del body["Transaction"]["TenderData"]["CardSecurityData"]["InternationalAVSData"]
-        
+          
     if AppConfig is False: #Checks if AppConfigData is set for eServices relating to EMV Data
         del body["Transaction"]["ApplicationConfigurationData"]
         del body["Transaction"]["TenderData"]["EMVData"]
@@ -100,6 +90,23 @@ def Undo(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
         return json.loads(r.text)["TransactionId"]                       
     except requests.exceptions.HTTPError as Error:
         print("--Undo Returned Error: %s." % Error)            
+        return
+    
+def ReturnById(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
+    if TxnGUID == None:
+        return
+    kwargs["TransactionId"] = TxnGUID
+    request_template = copy.deepcopy(getattr(TPSSchema,"ReturnById")) 
+    body = setReq(request_template,**kwargs)
+    url = base_url + "TPS.svc/" + ServiceId
+    try:
+        r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
+        logger.Log(r,"ReturnById")
+        r.raise_for_status()
+        print("--ReturnById returned successful")
+        return json.loads(r.text)["TransactionId"]                       
+    except requests.exceptions.HTTPError as Error:
+        print("--ReturnById Returned Error: %s." % Error)            
         return
     
 def Resubmit(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):

@@ -18,8 +18,9 @@ from miscutils import dataquery
 base_url = "https://api.ciptest.goevo.local/2.1.22/REST/"
 IdentityToken = dataquery.getIdentityToken("TEST","6B2866C8FD500001")
 session_token = SignOn.SignOnWithToken(base_url,IdentityToken)
+TMS.QueryTransactionsSummary(base_url,session_token,MerchantProfileIds = ["Auto_SOAP_Ecommerce_A"])
 #SIS.GetServiceInformation(base_url,session_token)
-SIS.GetMerchantProfiles(base_url,session_token)
+#SIS.GetMerchantProfiles(base_url,session_token)
 #guid = TPS.Authorize(base_url,session_token,"372EC00001",MerchantProfileId="EVOIntl_SOAP_Ecommerce_HostCap",CVData="123",CVDataProvided="Provided")
 #TPS.Resubmit(base_url,session_token,"372EC00001",guid,ResubmitReason="Resubmission")
 

@@ -21,10 +21,18 @@ Authorize = {
             }        
         },
     "CustomerData":{
-      "BillingData":None,
+      "BillingData":{
+         "Address":None,
+         "InternationalAddress":None,
+         "BusinessName":None
+         },
+      "ShippingData":{
+         "Address":None,
+         "InternationalAddress":None,
+         "BusinessName":None
+         },
       "CustomerId":None,
-      "CustomerTaxId":None,
-      "ShippingData":None
+      "CustomerTaxId":None,      
     },
     "ReportingData":None,
     "TenderData":{
@@ -34,6 +42,7 @@ Authorize = {
         "CardholderName":"John Doe",
         "Expire":"1215",
         "PAN":"4003000123456781",
+        "Track1Data":None,
         "Track2Data":None
         },
       "CardSecurityData":{
@@ -63,16 +72,21 @@ Authorize = {
         "KeySerialNumber":None,
         "PIN":None
       },
+      "EcommerceSecurityData": {
+            "TokenData":None,
+            "TokenIndicator":None,
+            "XID":None
+            },
       "DeviceSerialNumber":None,
       "EncryptionKeyId":None,
       "EMVEncryptionKeyId":None,
       "MACEncryptionKeyId":None,
       "SecureEMVData":None,
       "SecureMACData":None,
+      "VendorId":None,
       "PaymentAccountDataToken":None,
       "SecurePaymentAccountData":None,
-      "SwipeStatus":None,
-      "CardholderIdentification":None,
+      "SwipeStatus":None,      
       "CardholderIdType":"NotSet",
       "EMVData":{
          "ApplicationId":"A0000000041010",
@@ -109,6 +123,7 @@ Authorize = {
             }
     },
     "TransactionData":{
+      "$type":"BankcardTransactionDataPro,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard/Pro",
       "AccountType":"NotSet",
       "Amount":"1.00",
       "CurrencyCode":"USD",
@@ -117,6 +132,7 @@ Authorize = {
       "OrderNumber":"2",
       "EntryMode":"Keyed",
       "Reference":"jdhfjd",
+      "SignatureCaptured":False,
       "TransactionCode":"Override",
       "TransactionDateTime":"2015-04-03T13:50:16",
       "IS3DSecure":False,
@@ -156,22 +172,110 @@ Resubmit = {"$type": "ResubmitTransaction,http://schemas.evosnap.com/CWS/v2.0/Tr
             "ApplicationProfileId": "4084"
             }
 
+ReturnById = {"$type": "ReturnById,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",
+              "differenceData": 
+                    {"$type": "BankcardReturnPro,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard/Pro",
+                     "TransactionId":None,
+                     "Amount":None,
+                     "TenderData": {
+                          "$type":"BankcardTenderDataPro,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard/Pro",
+                          "CardData":{
+                            "CardType":"Visa",
+                            "CardholderName":"John Doe",
+                            "Expire":"1215",
+                            "PAN":"4003000123456781",
+                            "Track1Data":None,
+                            "Track2Data":None
+                            },
+                          "CardSecurityData":{
+                            "AVSData":{
+                              "CardholderName":None,
+                              "City":None,
+                              "Email":None,
+                              "Phone":None,
+                              "StateProvince":None,
+                              "PostalCode":None,
+                              "Country":"NotSet",
+                              "Phone":None,
+                              "Email":None
+                                },
+                            "InternationalAVSData":{
+                                "HouseNumber":None,
+                                "Street":None,
+                                "POBoxNumber":None,
+                                "City":None,
+                                "StateProvince":None,
+                                "PostalCode":None,
+                                "Country":"NotSet"
+                              },
+                            "CVDataProvided":"NotSet",
+                            "CVData":None,
+                            "IdentificationInformation":None,
+                            "KeySerialNumber":None,
+                            "PIN":None
+                          },
+                          "DeviceSerialNumber":None,
+                          "EncryptionKeyId":None,
+                          "EMVEncryptionKeyId":None,
+                          "MACEncryptionKeyId":None,
+                          "SecureEMVData":None,
+                          "SecureMACData":None,
+                          "VendorId":None,
+                          "PaymentAccountDataToken":None,
+                          "SecurePaymentAccountData":None,
+                          "SwipeStatus":None,      
+                          "CardholderIdType":"NotSet",
+                          "EMVData":{
+                             "ApplicationId":"A0000000041010",
+                             "ApplicationInterchangeProfile":"5800",
+                             "ApplicationTransactionCount":"000D",
+                             "ApplicationUsageControl":"FF00",
+                             "ApplicationVersionNumber":None,
+                             "AuthorizationAmount":"000000000700",
+                             "AuthorizationResponseCode":"00",
+                             "CVMList":"000000000000000042015E0342031F03",
+                             "CVMResults":"5E0300",
+                             "CardAuthenticationReliabilityIndex":None,
+                             "CardAuthenticationResultsCode":None,
+                             "CashBackAmount":None,
+                             "ChipConditionCode":None,
+                             "CryptogramInformationData":"40",
+                             "Cryptogram":"8C270F78A4CE5260",
+                             "InterfaceDeviceSerialNumber":None,
+                             "IssuerActionDefault":"F050040800",
+                             "IssuerActionDenial":None,
+                             "IssuerActionOnline":None,
+                             "IssuerApplicationData":"0110A00001220000000000000000000000FF",
+                             "IssuerScriptResults":None,
+                             "LocalTransactionDate":"141028",
+                             "TerminalCapability":"E0F8C8",
+                             "TerminalCountryCode":"840",
+                             "TerminalType":None,
+                             "TerminalVerifyResult":"42C0008000",
+                             "TransactionCategoryCode":None,
+                             "CurrencyCode":"840",
+                             "SequenceNumber":None,
+                             "TransactionType":"0",
+                             "UnpredictableNumber":"D863A470"         
+                                }
+                        }
+                     },
+              "ApplicationProfileId": "4084"}
+
 RequestKey = {"$type":"KeyTransaction,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",
                 "Transaction":{
                     "$type":"EncryptionTransaction,http://schemas.evosnap.com/CWS/v2.0/Transactions/Encryption",
-                    "TenderData":{
-                        "ChipConditionCode":"testcode",
-                        "EntryMode":"ContactlessMChipOrSmartCard"
+                    "TenderData":{                        
+                        "EntryMode":"ContactlessMChipOrSmartCard",
+                        "DeviceSerialNumber":"123-adgh",
+                        "VendorId":None,
+                        "RegionId":None
                         },
-                    "TransactionData":{
-                        "Terminal":{
-                            "SerialNumber":"123-adgh",
-                            "VendorName":"HappyPOS"
-                            },
+                    "TransactionData":{                        
                         "Amount":"0.00",
                         "CurrencyCode":"NotSet"                        
                         }
                     },
-              "ApplicationProfileId": None,
+              "ApplicationProfileId": "4084",
               "MerchantProfileId":None
              }
