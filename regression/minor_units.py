@@ -21,7 +21,9 @@ eSvc_MerchProfId = "eServices_SOAP_CardPresent_HC"
 
 #TRON Tests
 trn_ngt_sessiontoken = SignOn.SignOnWithToken(base_url,trn_ngt_IdentityToken)
-TPS.Authorize(base_url,trn_ngt_sessiontoken,"911C800001",MerchantProfileId=ngt_MerchProfId,CustomerPresent="Present",EcommerceSecurityData=None,CardSecurityData=None)
+guid = TPS.Authorize(base_url,trn_ngt_sessiontoken,"911C800001",MerchantProfileId=ngt_MerchProfId,CustomerPresent="Present",EcommerceSecurityData=None,CardSecurityData=None)
+TPS.Capture(base_url,trn_ngt_sessiontoken,"911C800001",guid)
+TPS.Capture(base_url,trn_ngt_sessiontoken,"911C800001",guid)
 
 
 #TPS.Authorize(base_url,trn_ngt_sessiontoken,trn_serviceId,MerchantProfileId=trn_MerchProfId,CVData="123",CVDataProvided="Provided",EcommerceSecurityData=None,AVSData=None)

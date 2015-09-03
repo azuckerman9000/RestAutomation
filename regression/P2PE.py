@@ -70,4 +70,6 @@ P2PE_sessiontoken = SignOn.SignOnWithUsernamePassword(base_url,"Keymasta","Passw
 #auth_guid = TPS.Authorize(base_url,bb_sessiontoken,trn_ServiceId,MerchantProfileId=trn_MPID2,AVSData=None,CVData="123",CVDataProvided="Provided")
 #cap_guid = TPS.Capture(base_url,bb_sessiontoken,trn_ServiceId,auth_guid)
 #TPS.ReturnById(base_url,bb_sessiontoken,trn_ServiceId,cap_guid,Amount="1.00",TenderData=None)
-TMS.QueryTransactionsSummary(base_url,bb_sessiontoken,TransactionDateRange={"StartDateTime":"2015-07-01T14:08:41.237Z","EndDateTime":"2015-07-23T14:08:41.237Z"},MerchantProfileIds=["EncyrptionMerchantA"])
+#TMS.QueryTransactionsSummary(base_url,bb_sessiontoken,TransactionDateRange={"StartDateTime":"2015-07-01T14:08:41.237Z","EndDateTime":"2015-07-23T14:08:41.237Z"},MerchantProfileIds=["EncyrptionMerchantA"])
+TMS.QueryTransactionDetails(base_url,bb_sessiontoken,TransactionDateRange={"StartDateTime":"2015-07-01T14:08:41.237Z","EndDateTime":"2015-07-23T14:08:41.237Z"},MerchantProfileIds=["EncyrptionMerchantA"])
+#TMS.QueryTransactionFamilies(base_url,sixb_sessiontoken,TransactionIds=["985980F782CE4F9192403581BDDB889E"],MerchantProfileIds=["HCRestaurantMerch"])

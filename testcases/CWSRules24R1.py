@@ -13,7 +13,9 @@ TestCases = {
                                          "EMVData":None,
                                          "ApplicationConfigurationData":None,
                                          "CardSecurityData":None,
-                                         "EcommerceSecurityData":None
+                                         "EcommerceSecurityData":None,
+                                         "AlternativeMerchantData":None,
+                                         "Level2Data":None
                                          },
                 "CustBillingAddress2" : {"ServiceId":ServiceId_NGT_SBX,
                                          "MerchantProfileId":MPID_NGT_SBX,
@@ -22,7 +24,9 @@ TestCases = {
                                          "EMVData":None,
                                          "ApplicationConfigurationData":None,
                                          "CardSecurityData":None,
-                                         "EcommerceSecurityData":None
+                                         "EcommerceSecurityData":None,
+                                         "AlternativeMerchantData":None,
+                                         "Level2Data":None
                                          },
                 "CustShippingAddress1" : {"ServiceId":ServiceId_NGT_SBX,
                                          "MerchantProfileId":MPID_NGT_SBX,
@@ -31,7 +35,9 @@ TestCases = {
                                          "EMVData":None,
                                          "ApplicationConfigurationData":None,
                                          "CardSecurityData":None,
-                                         "EcommerceSecurityData":None
+                                         "EcommerceSecurityData":None,
+                                         "AlternativeMerchantData":None,
+                                         "Level2Data":None
                                          },
                 "CustShippingAddress2" : {"ServiceId":ServiceId_NGT_SBX,
                                          "MerchantProfileId":MPID_NGT_SBX,
@@ -40,7 +46,9 @@ TestCases = {
                                          "EMVData":None,
                                          "ApplicationConfigurationData":None,
                                          "CardSecurityData":None,
-                                         "EcommerceSecurityData":None
+                                         "EcommerceSecurityData":None,
+                                         "AlternativeMerchantData":None,
+                                         "Level2Data":None
                                          },
                 "CustIntlBillingAddress1" :  {"ServiceId":ServiceId_TRN_SBX,
                                              "MerchantProfileId":MPID_TRN_SBX,
@@ -52,7 +60,9 @@ TestCases = {
                                              "CVDataProvided":"Provided",
                                              "AVSData":None,
                                              "InternationalAVSData":None,
-                                             "EcommerceSecurityData":None
+                                             "EcommerceSecurityData":None,
+                                             "AlternativeMerchantData":None,
+                                             "Level2Data":None
                                              },
                 "CustIntlBillingAddress2" :  {"ServiceId":ServiceId_TRN_SBX,
                                              "MerchantProfileId":MPID_TRN_SBX,
@@ -64,7 +74,9 @@ TestCases = {
                                              "CVDataProvided":"Provided",
                                              "AVSData":None,
                                              "InternationalAVSData":None,
-                                             "EcommerceSecurityData":None
+                                             "EcommerceSecurityData":None,
+                                             "AlternativeMerchantData":None,
+                                             "Level2Data":None
                                              },
              "CustIntlShippingAddress1" :  {"ServiceId":ServiceId_TRN_SBX,
                                              "MerchantProfileId":MPID_TRN_SBX,
@@ -76,7 +88,9 @@ TestCases = {
                                              "CVDataProvided":"Provided",
                                              "AVSData":None,
                                              "InternationalAVSData":None,
-                                             "EcommerceSecurityData":None
+                                             "EcommerceSecurityData":None,
+                                             "AlternativeMerchantData":None,
+                                             "Level2Data":None
                                              },
              "CustIntlShippingAddress2" :  {"ServiceId":ServiceId_TRN_SBX,
                                              "MerchantProfileId":MPID_TRN_SBX,
@@ -88,7 +102,9 @@ TestCases = {
                                              "CVDataProvided":"Provided",
                                              "AVSData":None,
                                              "InternationalAVSData":None,
-                                             "EcommerceSecurityData":None
+                                             "EcommerceSecurityData":None,
+                                             "AlternativeMerchantData":None,
+                                             "Level2Data":None
                                              },
              "IntlAVS1" :  {"ServiceId":ServiceId_TRN_SBX,
                                 "MerchantProfileId":MPID_TRN_SBX,
@@ -99,7 +115,9 @@ TestCases = {
                                 "CVDataProvided":"Provided",
                                 "AVSData":None,
                                 "InternationalAVSData":{"HouseNumber":"1234","Street":"1st","City":"Denver","StateProvince":"CO","PostalCode":"80202","Country":"USA"},
-                                "EcommerceSecurityData":None
+                                "EcommerceSecurityData":None,
+                                "AlternativeMerchantData":None,
+                                "Level2Data":None
                                 },
              "IntlAVS2" :  {"ServiceId":ServiceId_TRN_SBX,
                                 "MerchantProfileId":MPID_TRN_SBX,
@@ -110,7 +128,9 @@ TestCases = {
                                 "CVDataProvided":"Provided",
                                 "AVSData":None,
                                 "InternationalAVSData":{"HouseNumber":None,"Street":None,"City":None,"StateProvince":"CO","PostalCode":None,"Country":None},
-                                "EcommerceSecurityData":None
+                                "EcommerceSecurityData":None,
+                                "AlternativeMerchantData":None,
+                                "Level2Data":None
                                 },
              "AccountType1" : {"ServiceId":ServiceId_NGT_SBX,
                                "MerchantProfileId":MPID_NGT_SBX,
@@ -120,7 +140,9 @@ TestCases = {
                                 "PIN":"D8BC0FAF9BBD9B17",
                                 "KeySerialNumber":"856290000060027C",
                                 "EcommerceSecurityData":None,
-                                "AccountType":"CheckingAccount"
+                                "AccountType":"CheckingAccount",
+                                "AlternativeMerchantData":None,
+                                "Level2Data":None
                                 },
              "AccountType2" : {"ServiceId":ServiceId_NGT_SBX,
                                "MerchantProfileId":MPID_NGT_SBX,
@@ -130,7 +152,21 @@ TestCases = {
                                 "PIN":"D8BC0FAF9BBD9B17",
                                 "KeySerialNumber":"856290000060027C",
                                 "EcommerceSecurityData":None,
-                                "AccountType":None
-                                }
+                                "AccountType":None,
+                                "AlternativeMerchantData":None,
+                                "Level2Data":None
+                                },
+             "SigCaptured" : {"ServiceId":ServiceId_NGT_SBX,
+                                         "MerchantProfileId":MPID_NGT_SBX,
+                                         "ShippingData":None,
+                                         "Address":{"Street1":"1st","City":"Denver","StateProvince":"CO","PostalCode":"80202","CountryCode":"USA"},                                         
+                                         "EMVData":None,
+                                         "ApplicationConfigurationData":None,
+                                         "CardSecurityData":None,
+                                         "EcommerceSecurityData":None,
+                                         "AlternativeMerchantData":None,
+                                         "SignatureCaptured":False,
+                                         "Level2Data":None
+                                         }
              
             }

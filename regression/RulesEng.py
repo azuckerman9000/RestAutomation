@@ -9,6 +9,7 @@ sessiontoken = SignOn.SignOnWithToken(base_url,dataquery.getIdentityToken("TEST"
 Scenario_Address = ["CustBillingAddress1","CustBillingAddress2","CustShippingAddress1","CustShippingAddress2"]
 Scenario_IntlAddress = ["CustIntlBillingAddress1"]
 Scenario_IntlAVS = ["IntlAVS1","IntlAVS2"]
-for testcase in Scenario_IntlAVS:
+Scenario_Sig = ["SigCaptured"]
+for testcase in Scenario_Sig:
     TPS.Authorize(base_url,sessiontoken,**CWSRules24R1.TestCases[testcase])
     TPS.Undo

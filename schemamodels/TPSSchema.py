@@ -137,7 +137,21 @@ Authorize = {
       "TransactionDateTime":"2015-04-03T13:50:16",
       "IS3DSecure":False,
       "CardholderAuthenticationEntity":"NotSet",
-      "CardPresence":False
+      "CardPresence":False,
+      "LineItemDetails":None,
+      "AlternativeMerchantData": {
+        "CustomerServiceInternet":None,
+        "CustomerServicePhone":None,
+        "MerchantId:":None,
+        "Description":None,
+        "Address":None,
+        "Name":None,
+        "SIC":None
+        },
+     "Level2Data":{
+        "BaseAmount":None,
+        "DiscountAmount":None,
+        "OrderNumber":None}
     }
   }
 }
