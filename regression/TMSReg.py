@@ -8,6 +8,5 @@ sessiontoken = SignOn.SignOnWithToken(base_url,dataquery.getIdentityToken("TEST"
 
 for testcase in TMSParams.TestCases.values():
     TMS.QueryTransactionsSummary(base_url,sessiontoken,**testcase)
-
-
-#TMS.QueryTransactionsSummary(base_url,bb_sessiontoken,TransactionDateRange={"StartDateTime":"2015-07-01T14:08:41.237Z","EndDateTime":"2015-07-23T14:08:41.237Z"},MerchantProfileIds=["EncyrptionMerchantA"])
+    TMS.QueryTransactionDetails(base_url,sessiontoken,**testcase)
+    TMS.QueryTransactionFamilies(base_url,sessiontoken,**testcase)
