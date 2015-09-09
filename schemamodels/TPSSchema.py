@@ -138,6 +138,7 @@ Authorize = {
       "IS3DSecure":False,
       "CardholderAuthenticationEntity":"NotSet",
       "CardPresence":False,
+      "CashBackAmount":None,
       "LineItemDetails":None,
       "AlternativeMerchantData": {
         "CustomerServiceInternet":None,
@@ -152,12 +153,22 @@ Authorize = {
         "BaseAmount":None,
         "DiscountAmount":None,
         "OrderNumber":None}
+    },
+  "InterchangeData":{
+    "BillPayment":"NotSet",
+    "RequestCommercialCard":"NotSet",
+    "ExistingDebt":"NotSet",
+    "RequestACI":"NotSet",
+    "TotalNumberOfInstallments":None,
+    "CurrentInstallmentNumber":None,
+    "RequestAdvice":"NotSet"
     }
   }
 }
 
 Capture = {"$type": "Capture,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",
            "ApplicationProfileId": "4084",
+           "Addendum":None,
            "BankcardCapture": {
                 "$type":"BankcardCapture,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard/Pro",
                 "Amount":None,
@@ -170,10 +181,12 @@ Capture = {"$type": "Capture,http://schemas.evosnap.com/CWS/v2.0/Transactions/Re
 
 Undo = {"$type": "Undo,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",
         "ApplicationProfileId": "4084",
+        "Addendum":None,
         "BankcardUndo": {
             "$type": "BankcardUndo,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard",
             "PINDebitReason":None,
             "ForceVoid":None,
+            "TransactionDateTime":None,
             "TransactionCode":None}
         }
 
@@ -191,6 +204,9 @@ ReturnById = {"$type": "ReturnById,http://schemas.evosnap.com/CWS/v2.0/Transacti
                     {"$type": "BankcardReturnPro,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard/Pro",
                      "TransactionId":None,
                      "Amount":None,
+                     "TransactionCode":"NotSet",
+                     "TransactionDateTime":None,
+                     "Addendum":None,
                      "TenderData": {
                           "$type":"BankcardTenderDataPro,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard/Pro",
                           "CardData":{

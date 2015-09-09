@@ -5,7 +5,7 @@ MPID_NGT_SBX = "Kyle Test"
 ServiceId_TRN_SBX = "372EC00001"
 MPID_TRN_SBX = "TRN_Ecommerce_SBX"
 
-TestCases = {
+TPSTestCases = {
                 "CustBillingAddress1" : {"ServiceId":ServiceId_NGT_SBX,
                                          "MerchantProfileId":MPID_NGT_SBX,
                                          "ShippingData":None,
@@ -15,7 +15,8 @@ TestCases = {
                                          "CardSecurityData":None,
                                          "EcommerceSecurityData":None,
                                          "AlternativeMerchantData":None,
-                                         "Level2Data":None
+                                         "Level2Data":None,
+                                         "InterchangeData":None
                                          },
                 "CustBillingAddress2" : {"ServiceId":ServiceId_NGT_SBX,
                                          "MerchantProfileId":MPID_NGT_SBX,
@@ -26,7 +27,8 @@ TestCases = {
                                          "CardSecurityData":None,
                                          "EcommerceSecurityData":None,
                                          "AlternativeMerchantData":None,
-                                         "Level2Data":None
+                                         "Level2Data":None,
+                                         "InterchangeData":None
                                          },
                 "CustShippingAddress1" : {"ServiceId":ServiceId_NGT_SBX,
                                          "MerchantProfileId":MPID_NGT_SBX,
@@ -37,7 +39,8 @@ TestCases = {
                                          "CardSecurityData":None,
                                          "EcommerceSecurityData":None,
                                          "AlternativeMerchantData":None,
-                                         "Level2Data":None
+                                         "Level2Data":None,
+                                         "InterchangeData":None
                                          },
                 "CustShippingAddress2" : {"ServiceId":ServiceId_NGT_SBX,
                                          "MerchantProfileId":MPID_NGT_SBX,
@@ -48,7 +51,8 @@ TestCases = {
                                          "CardSecurityData":None,
                                          "EcommerceSecurityData":None,
                                          "AlternativeMerchantData":None,
-                                         "Level2Data":None
+                                         "Level2Data":None,
+                                         "InterchangeData":None
                                          },
                 "CustIntlBillingAddress1" :  {"ServiceId":ServiceId_TRN_SBX,
                                              "MerchantProfileId":MPID_TRN_SBX,
@@ -62,7 +66,8 @@ TestCases = {
                                              "InternationalAVSData":None,
                                              "EcommerceSecurityData":None,
                                              "AlternativeMerchantData":None,
-                                             "Level2Data":None
+                                             "Level2Data":None,
+                                             "InterchangeData":None
                                              },
                 "CustIntlBillingAddress2" :  {"ServiceId":ServiceId_TRN_SBX,
                                              "MerchantProfileId":MPID_TRN_SBX,
@@ -76,7 +81,8 @@ TestCases = {
                                              "InternationalAVSData":None,
                                              "EcommerceSecurityData":None,
                                              "AlternativeMerchantData":None,
-                                             "Level2Data":None
+                                             "Level2Data":None,
+                                             "InterchangeData":None
                                              },
              "CustIntlShippingAddress1" :  {"ServiceId":ServiceId_TRN_SBX,
                                              "MerchantProfileId":MPID_TRN_SBX,
@@ -90,7 +96,8 @@ TestCases = {
                                              "InternationalAVSData":None,
                                              "EcommerceSecurityData":None,
                                              "AlternativeMerchantData":None,
-                                             "Level2Data":None
+                                             "Level2Data":None,
+                                             "InterchangeData":None
                                              },
              "CustIntlShippingAddress2" :  {"ServiceId":ServiceId_TRN_SBX,
                                              "MerchantProfileId":MPID_TRN_SBX,
@@ -104,7 +111,8 @@ TestCases = {
                                              "InternationalAVSData":None,
                                              "EcommerceSecurityData":None,
                                              "AlternativeMerchantData":None,
-                                             "Level2Data":None
+                                             "Level2Data":None,
+                                             "InterchangeData":None
                                              },
              "IntlAVS1" :  {"ServiceId":ServiceId_TRN_SBX,
                                 "MerchantProfileId":MPID_TRN_SBX,
@@ -117,7 +125,8 @@ TestCases = {
                                 "InternationalAVSData":{"HouseNumber":"1234","Street":"1st","City":"Denver","StateProvince":"CO","PostalCode":"80202","Country":"USA"},
                                 "EcommerceSecurityData":None,
                                 "AlternativeMerchantData":None,
-                                "Level2Data":None
+                                "Level2Data":None,
+                                "InterchangeData":None
                                 },
              "IntlAVS2" :  {"ServiceId":ServiceId_TRN_SBX,
                                 "MerchantProfileId":MPID_TRN_SBX,
@@ -130,7 +139,8 @@ TestCases = {
                                 "InternationalAVSData":{"HouseNumber":None,"Street":None,"City":None,"StateProvince":"CO","PostalCode":None,"Country":None},
                                 "EcommerceSecurityData":None,
                                 "AlternativeMerchantData":None,
-                                "Level2Data":None
+                                "Level2Data":None,
+                                "InterchangeData":None
                                 },
              "AccountType1" : {"ServiceId":ServiceId_NGT_SBX,
                                "MerchantProfileId":MPID_NGT_SBX,
@@ -142,7 +152,8 @@ TestCases = {
                                 "EcommerceSecurityData":None,
                                 "AccountType":"CheckingAccount",
                                 "AlternativeMerchantData":None,
-                                "Level2Data":None
+                                "Level2Data":None,
+                                "InterchangeData":None
                                 },
              "AccountType2" : {"ServiceId":ServiceId_NGT_SBX,
                                "MerchantProfileId":MPID_NGT_SBX,
@@ -154,7 +165,8 @@ TestCases = {
                                 "EcommerceSecurityData":None,
                                 "AccountType":None,
                                 "AlternativeMerchantData":None,
-                                "Level2Data":None
+                                "Level2Data":None,
+                                "InterchangeData":None
                                 },
              "SigCaptured" : {"ServiceId":ServiceId_NGT_SBX,
                                          "MerchantProfileId":MPID_NGT_SBX,
@@ -166,7 +178,35 @@ TestCases = {
                                          "EcommerceSecurityData":None,
                                          "AlternativeMerchantData":None,
                                          "SignatureCaptured":False,
-                                         "Level2Data":None
+                                         "Level2Data":None,
+                                         "InterchangeData":None
+                                         },
+            "EcommSecurityData":  { "ServiceId":"911C800001",
+                                    "MerchantProfileId":"EcommMerch",
+                                    "ShippingData":None,
+                                    "Address":{"Street1":"1st","City":"Denver","StateProvince":"CO","PostalCode":"80202","CountryCode":"USA"},                                         
+                                    "EMVData":None,
+                                    "ApplicationConfigurationData":None,
+                                    "CardSecurityData":None,                                    
+                                    "AlternativeMerchantData":None,
+                                    "Level2Data":None,
+                                    "TokenData":"01234567890123456789",
+                                    "TokenIndicator":"VPAS",
+                                    "InterchangeData":None
+                                    },
+                "CustPresent" : {"ServiceId":ServiceId_NGT_SBX,
+                                         "MerchantProfileId":MPID_NGT_SBX,
+                                         "ShippingData":None,
+                                         "Address":{"Street1":"1st","City":"Denver","StateProvince":"CO","PostalCode":"80202","CountryCode":"USA"},                                         
+                                         "EMVData":None,
+                                         "ApplicationConfigurationData":None,
+                                         "CardSecurityData":None,
+                                         "EcommerceSecurityData":None,
+                                         "AlternativeMerchantData":None,
+                                         "Level2Data":None,
+                                         "CustomerPresent":"NotSet",
+                                         "InterchangeData":None,
+                                         "CashBackAmount":"3.00"
                                          }
              
             }

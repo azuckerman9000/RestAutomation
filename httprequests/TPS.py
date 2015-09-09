@@ -109,6 +109,26 @@ def ReturnById(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
         print("--ReturnById Returned Error: %s." % Error)            
         return
     
+def ReturnUnlinked(base_url,SessionToken,ServiceId,AppConfig=False,**kwargs):
+    request_template = copy.deepcopy(getattr(TPSSchema,"Authorize"))  
+    body = setReq(request_template,**kwargs)
+          
+    if AppConfig is False: #Checks if AppConfigData is set for eServices relating to EMV Data
+        del body["Transaction"]["ApplicationConfigurationData"]
+        del body["Transaction"]["TenderData"]["EMVData"]
+        
+    body["$type"] = "ReturnUnlinked,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest"
+    url = base_url + "TPS.svc/" + ServiceId
+    try:
+        r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
+        logger.Log(r,"ReturnUnlinked")
+        r.raise_for_status()
+        print("--ReturnUnlinked returned successful")
+        return json.loads(r.text)["TransactionId"]               
+    except requests.exceptions.HTTPError as Error:
+        print("--ReturnUnlinked Returned Error: %s." % Error)            
+        return
+    
 def Resubmit(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
     if TxnGUID == None:
         return

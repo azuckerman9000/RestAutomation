@@ -10,6 +10,7 @@ Scenario_Address = ["CustBillingAddress1","CustBillingAddress2","CustShippingAdd
 Scenario_IntlAddress = ["CustIntlBillingAddress1"]
 Scenario_IntlAVS = ["IntlAVS1","IntlAVS2"]
 Scenario_Sig = ["SigCaptured"]
-for testcase in Scenario_Sig:
-    TPS.Authorize(base_url,sessiontoken,**CWSRules24R1.TestCases[testcase])
-    TPS.Undo
+Scenario_Ecom = ["EcommSecurityData"]
+Scenario_CustPres = ["CustPresent"]
+for testcase in Scenario_CustPres:
+    TPS.Authorize(base_url,sessiontoken,**CWSRules24R1.TPSTestCases[testcase])

@@ -15,9 +15,9 @@ TxnSummary = {
 "CaptureDateRange": None,
 "TransactionDateRange": None,
 "QueryType": "AND",
-"IncludeRelated": False,
 "IsAcknowledged": "NotSet"
 },
+"IncludeRelated": False,
 "pagingParameters": {
 "Page": 0,
 "PageSize": 50
@@ -41,9 +41,10 @@ TxnDetail = {
 "CaptureDateRange": None,
 "TransactionDateRange": None,
 "QueryType": "AND",
-"IncludeRelated": False,
 "IsAcknowledged": "NotSet"
 },
+"IncludeRelated": False,
+"transactionDetailFormat":"SerializedCWS",
 "pagingParameters": {
 "Page": 0,
 "PageSize": 50
@@ -67,9 +68,9 @@ TxnFamily = {
 "CaptureDateRange": None,
 "TransactionDateRange": None,
 "QueryType": "AND",
-"IncludeRelated": False,
 "IsAcknowledged": "NotSet"
 },
+"IncludeRelated": False,
 "pagingParameters": {
 "Page": 0,
 "PageSize": 50
