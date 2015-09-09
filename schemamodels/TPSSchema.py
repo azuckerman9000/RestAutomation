@@ -190,6 +190,15 @@ Undo = {"$type": "Undo,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",
             "TransactionCode":None}
         }
 
+Adjust = {"$type": "Adjust,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",
+        "ApplicationProfileId": "4084",        
+        "differenceData": {            
+            "Addendum":None,
+            "Amount":"1.00",
+            "TipAmount":None
+            }
+        }
+
 Resubmit = {"$type": "ResubmitTransaction,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",            
             "Transaction":
                 {"TransactionId":None,

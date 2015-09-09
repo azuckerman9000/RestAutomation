@@ -92,6 +92,22 @@ def Undo(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
         print("--Undo Returned Error: %s." % Error)            
         return
     
+def Adjust(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
+    if TxnGUID == None:
+        return
+    request_template = copy.deepcopy(getattr(TPSSchema,"Adjust")) 
+    body = setReq(request_template,**kwargs)
+    url = base_url + "TPS.svc/" + ServiceId + "/" + TxnGUID
+    try:
+        r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
+        logger.Log(r,"Adjust")
+        r.raise_for_status()
+        print("--Adjust returned successful")
+        return json.loads(r.text)["TransactionId"]                       
+    except requests.exceptions.HTTPError as Error:
+        print("--Adjust Returned Error: %s." % Error)            
+        return
+    
 def ReturnById(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
     if TxnGUID == None:
         return
