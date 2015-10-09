@@ -1,13 +1,19 @@
+"""
 ## ServiceKey is 6B2866C8FD500001 ##
-ServiceId_NGT_SBX = "3CF9E00001"
+ServiceId_GenHC_Ecomm = "3CF9E00001"
 MPID_NGT_SBX = "Kyle Test"
 
+
+"""
 ServiceId_TRN_SBX = "372EC00001"
 MPID_TRN_SBX = "TRN_Ecommerce_SBX"
+# ServiceKey is 4DBA36C8FD500001
+ServiceId_GenHC_Ecomm = "35EDC00001"
+MPID_GenHC_Ecomm = "Generic_Ecomm_HC"
 
 TPSTestCases = {
-                "CustBillingAddress1" : {"ServiceId":ServiceId_NGT_SBX,
-                                         "MerchantProfileId":MPID_NGT_SBX,
+                "CustBillingAddress1" : {"ServiceId":ServiceId_GenHC_Ecomm,
+                                         "MerchantProfileId":MPID_GenHC_Ecomm,
                                          "ShippingData":None,
                                          "Address":{"Street1":"1st","City":"Denver","StateProvince":"CO","PostalCode":"80202","CountryCode":"USA"},                                         
                                          "EMVData":None,
@@ -18,8 +24,8 @@ TPSTestCases = {
                                          "Level2Data":None,
                                          "InterchangeData":None
                                          },
-                "CustBillingAddress2" : {"ServiceId":ServiceId_NGT_SBX,
-                                         "MerchantProfileId":MPID_NGT_SBX,
+                "CustBillingAddress2" : {"ServiceId":ServiceId_GenHC_Ecomm,
+                                         "MerchantProfileId":MPID_GenHC_Ecomm,
                                          "ShippingData":None,
                                          "Address":{"Street1":None,"City":None,"StateProvince":"CO","PostalCode":None,"CountryCode":None},                                         
                                          "EMVData":None,
@@ -30,8 +36,8 @@ TPSTestCases = {
                                          "Level2Data":None,
                                          "InterchangeData":None
                                          },
-                "CustShippingAddress1" : {"ServiceId":ServiceId_NGT_SBX,
-                                         "MerchantProfileId":MPID_NGT_SBX,
+                "CustShippingAddress1" : {"ServiceId":ServiceId_GenHC_Ecomm,
+                                         "MerchantProfileId":MPID_GenHC_Ecomm,
                                          "BillingData":None,
                                          "Address":{"Street1":"1st","City":"Denver","StateProvince":"CO","PostalCode":"80202","CountryCode":"USA"},                                        
                                          "EMVData":None,
@@ -42,8 +48,8 @@ TPSTestCases = {
                                          "Level2Data":None,
                                          "InterchangeData":None
                                          },
-                "CustShippingAddress2" : {"ServiceId":ServiceId_NGT_SBX,
-                                         "MerchantProfileId":MPID_NGT_SBX,
+                "CustShippingAddress2" : {"ServiceId":ServiceId_GenHC_Ecomm,
+                                         "MerchantProfileId":MPID_GenHC_Ecomm,
                                          "BillingData":None,
                                          "Address":{"Street1":None,"City":None,"StateProvince":"CO","PostalCode":None,"CountryCode":None},                                         
                                          "EMVData":None,
@@ -142,8 +148,8 @@ TPSTestCases = {
                                 "Level2Data":None,
                                 "InterchangeData":None
                                 },
-             "AccountType1" : {"ServiceId":ServiceId_NGT_SBX,
-                               "MerchantProfileId":MPID_NGT_SBX,
+             "AccountType1" : {"ServiceId":ServiceId_GenHC_Ecomm,
+                               "MerchantProfileId":MPID_GenHC_Ecomm,
                                 "CustomerData":None,                                                                                 
                                 "EMVData":None,
                                 "ApplicationConfigurationData":None,
@@ -155,8 +161,8 @@ TPSTestCases = {
                                 "Level2Data":None,
                                 "InterchangeData":None
                                 },
-             "AccountType2" : {"ServiceId":ServiceId_NGT_SBX,
-                               "MerchantProfileId":MPID_NGT_SBX,
+             "AccountType2" : {"ServiceId":ServiceId_GenHC_Ecomm,
+                               "MerchantProfileId":MPID_GenHC_Ecomm,
                                 "CustomerData":None,                                                                                 
                                 "EMVData":None,
                                 "ApplicationConfigurationData":None,
@@ -168,8 +174,8 @@ TPSTestCases = {
                                 "Level2Data":None,
                                 "InterchangeData":None
                                 },
-             "SigCaptured" : {"ServiceId":ServiceId_NGT_SBX,
-                                         "MerchantProfileId":MPID_NGT_SBX,
+             "SigCaptured" : {"ServiceId":ServiceId_GenHC_Ecomm,
+                                         "MerchantProfileId":MPID_GenHC_Ecomm,
                                          "ShippingData":None,
                                          "Address":{"Street1":"1st","City":"Denver","StateProvince":"CO","PostalCode":"80202","CountryCode":"USA"},                                         
                                          "EMVData":None,
@@ -194,8 +200,8 @@ TPSTestCases = {
                                     "TokenIndicator":"VPAS",
                                     "InterchangeData":None
                                     },
-                "CustPresent" : {"ServiceId":ServiceId_NGT_SBX,
-                                         "MerchantProfileId":MPID_NGT_SBX,
+                "CustPresent" : {"ServiceId":"35EDC00001",
+                                         "MerchantProfileId":"Generic_Ecomm_HC",
                                          "ShippingData":None,
                                          "Address":{"Street1":"1st","City":"Denver","StateProvince":"CO","PostalCode":"80202","CountryCode":"USA"},                                         
                                          "EMVData":None,
@@ -205,8 +211,7 @@ TPSTestCases = {
                                          "AlternativeMerchantData":None,
                                          "Level2Data":None,
                                          "CustomerPresent":"NotSet",
-                                         "InterchangeData":None,
-                                         "CashBackAmount":"3.00"
+                                         "InterchangeData":None
                                          }
              
             }

@@ -138,7 +138,7 @@ Authorize = {
       "IS3DSecure":False,
       "CardholderAuthenticationEntity":"NotSet",
       "CardPresence":False,
-      "CashBackAmount":None,
+      "CashBackAmount":"0.00",
       "LineItemDetails":None,
       "AlternativeMerchantData": {
         "CustomerServiceInternet":None,
@@ -276,7 +276,7 @@ ReturnById = {"$type": "ReturnById,http://schemas.evosnap.com/CWS/v2.0/Transacti
                              "CVMResults":"5E0300",
                              "CardAuthenticationReliabilityIndex":None,
                              "CardAuthenticationResultsCode":None,
-                             "CashBackAmount":None,
+                             "CashBackAmount":"0.00",
                              "ChipConditionCode":None,
                              "CryptogramInformationData":"40",
                              "Cryptogram":"8C270F78A4CE5260",

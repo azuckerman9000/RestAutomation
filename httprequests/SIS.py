@@ -1,14 +1,14 @@
 from schemamodels import SISSchema
-import json, requests
+import json, requests, copy
 from requests.auth import HTTPBasicAuth
 from miscutils import logger
 
 # Request Builder and Utility Functions
-def setSaveReq(**kwargs):
-    mreq = SISSchema.SaveMerchantProfiles
+def setReq(schema,**kwargs):
+    req = schema
     if len(kwargs.keys()) != 0:
-        mreq = [popSaveReq(mreq[0],kwargs)]
-    return mreq
+        req = [popSaveReq(req,kwargs)]
+    return req
         
 
 def popSaveReq(req_dict,inputs):
@@ -23,7 +23,8 @@ def popSaveReq(req_dict,inputs):
 # SIS HTTP Requests
         
 def SaveMerchantProfiles(base_url,SessionToken,**kwargs):    
-    body = setSaveReq(**kwargs)
+    request_template = copy.deepcopy(getattr(SISSchema,"SaveMerchantProfiles"))  
+    body = setReq(request_template[0],**kwargs)
     MerchantProfileId = body[0]["ProfileId"]
     ServiceId = body[0]["ServiceId"]
     url = base_url + "SIS.svc/merchProfile?serviceId=" + ServiceId
@@ -82,4 +83,16 @@ def GetServiceInformation(base_url,SessionToken):
     except requests.exceptions.HTTPError as Error:
         print("--GetServiceInformation Returned Error: %s." % Error)            
         return
-
+    
+def SaveApplicationData(base_url,SessionToken,**kwargs):
+    request_template = copy.deepcopy(getattr(SISSchema,"ApplicationData"))  
+    body = setReq(request_template,**kwargs)    
+    url = base_url + "SIS.svc/appProfile"
+    try:
+        r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"SaveApplicationData")
+        r.raise_for_status()
+        print("--Applicationdata Saved")        
+    except requests.exceptions.HTTPError as Error:
+        print("--SaveApplicationData Returned Error: %s." % Error)            
+        return
