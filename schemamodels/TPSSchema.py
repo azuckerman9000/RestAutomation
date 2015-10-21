@@ -195,7 +195,7 @@ Adjust = {"$type": "Adjust,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest
         "differenceData": {            
             "Addendum":None,
             "Amount":"1.00",
-            "TipAmount":None
+            "TipAmount":"0"
             }
         }
 

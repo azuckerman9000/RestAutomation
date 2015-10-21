@@ -28,7 +28,8 @@ AuthOnly = {
                                "AlternativeMerchantData":None,
                                "Level2Data":None,
                                "InterchangeData":None,
-                               "CustomerPresent":"NotSet"
+                               "CustomerPresent":"NotSet",
+                               "TransactionDateTime":None
                                },
             "CustomerPresent2":{
                                "ServiceId":ServiceId_GenTC,
@@ -43,6 +44,7 @@ AuthOnly = {
                                "Level2Data":None,
                                "InterchangeData":None,
                                "CustomerPresent":"NotSet"
+                               #"EmployeeId":None
                                },
             "CustomerPresent3":{
                                "ServiceId":ServiceId_GenTC,
@@ -77,4 +79,78 @@ AuthOnly = {
                                "InterchangeData":None,
                                "CustomerPresent":"NotSet"
                                }
+            }
+
+AllRules  = {
+            "AcctTypeReq":{
+                               "ServiceId":ServiceId_GenHC,
+                               "MerchantProfileId":MPID_Restaurant_HC,
+                               "ApplicationProfileId":"65360",
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "AVSData":None,
+                               "InternationalAVSData":None,
+                               "CustomerPresent":"NotSet",
+                               "KeySerialNumber":"856290000060027C",
+                               "PIN":"D8BC0FAF9BBD9B17",
+                               "Track2Data":"4003000123456781=15125025432198712345",
+                               "PAN":None,
+                               "EntryMode":"Track2DataFromMSR"                         
+                            },
+             "BillingAdrHappy":{
+                               "ServiceId":ServiceId_GenHC,
+                               "MerchantProfileId":MPID_Restaurant_HC,
+                               "ApplicationProfileId":"65360",
+                               "ShippingData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CardSecurityData":None,
+                               "CustomerPresent":"NotSet",                               
+                               "Track2Data":"4003000123456781=15125025432198712345",
+                               "PAN":None,
+                               "EntryMode":"Track2DataFromMSR",
+                               "Address":{"Street1":"1st","City":"Denver","PostalCode":"80202","CountryCode":"USA"}                         
+                            },
+             "BillingAdrSad":{
+                               "ServiceId":ServiceId_GenHC,
+                               "MerchantProfileId":MPID_Restaurant_HC,
+                               "ApplicationProfileId":"65360",
+                               "ShippingData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CardSecurityData":None,
+                               "CustomerPresent":"NotSet",                               
+                               "Track2Data":"4003000123456781=15125025432198712345",
+                               "PAN":None,
+                               "EntryMode":"Track2DataFromMSR",
+                               "Address":{"Street1":"1st","CountryCode":"USA"}                         
+                            },
+             "CustServPhone":{
+                               "ServiceId":ServiceId_GenTC,
+                               "MerchantProfileId":MPID_MOTO_TC,
+                               "ApplicationProfileId":"65360",
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,
+                               "CardSecurityData":None,
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CustomerPresent":"NotSet"
+                               #"EmployeeId":None
+                               },           
             }

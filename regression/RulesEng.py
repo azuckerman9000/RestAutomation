@@ -16,5 +16,9 @@ Scen_CustPresent = ["CustomerPresent1","CustomerPresent2","CustomerPresent3","Cu
 #for testcase in Scen_CustPresent:
 #    TPS.Authorize(base_url,sessiontoken,**GenericTests.AuthOnly[testcase])
 #sessiontoken = SignOn.DelegatedSignOn(base_url,"6B2866C8FD500001",Idt)
-TPS.Authorize(base_url,sessiontoken,**GenericTests.AuthOnly["CustomerPresent3"])
+#MOTOTC = {"ServiceId":"A175B00001","ProfileId":"Generic_MOTO_TC","CustomerServicePhone":"303 5677890","IndustryType":"MOTO","ServiceName":"Generic Sandbox BCP Terminal Capture","CustomerPresent":"MOTOCC"}
+#SIS.SaveMerchantProfiles(base_url,sessiontoken,**MOTOTC)
+Guid_AuthOnly = TPS.Authorize(base_url,sessiontoken,**GenericTests.AllRules["BillingAdrSad"])
+#TPS.Adjust(base_url,sessiontoken,GenericTests.AuthOnly["CustomerPresent1"]["ServiceId"],Guid_AuthOnly)
+#TPS.Undo(base_url,sessiontoken,GenericTests.AuthOnly["CustomerPresent1"]["ServiceId"],Guid_AuthOnly)
 
