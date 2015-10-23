@@ -12,13 +12,18 @@ Scenario_AuthOnly = ["CustomerPresent"]
 for testcase in Scenario_AuthOnly:
     TPS.Authorize(base_url,sessiontoken,**GenericTests.AuthOnly[testcase])
 """
-Scen_CustPresent = ["CustomerPresent1","CustomerPresent2","CustomerPresent3","CustomerPresent4"]
+#Scen_CustPresent = ["CustomerPresent1","CustomerPresent2","CustomerPresent3","CustomerPresent4"]
 #for testcase in Scen_CustPresent:
 #    TPS.Authorize(base_url,sessiontoken,**GenericTests.AuthOnly[testcase])
 #sessiontoken = SignOn.DelegatedSignOn(base_url,"6B2866C8FD500001",Idt)
-#MOTOTC = {"ServiceId":"A175B00001","ProfileId":"Generic_MOTO_TC","CustomerServicePhone":"303 5677890","IndustryType":"MOTO","ServiceName":"Generic Sandbox BCP Terminal Capture","CustomerPresent":"MOTOCC"}
-#SIS.SaveMerchantProfiles(base_url,sessiontoken,**MOTOTC)
-Guid_AuthOnly = TPS.Authorize(base_url,sessiontoken,**GenericTests.AllRules["BillingAdrSad"])
+
+Guid_AuthOnly = TPS.Authorize(base_url,sessiontoken,**GenericTests.AllRules["AltCustServPhoneSad"])
 #TPS.Adjust(base_url,sessiontoken,GenericTests.AuthOnly["CustomerPresent1"]["ServiceId"],Guid_AuthOnly)
 #TPS.Undo(base_url,sessiontoken,GenericTests.AuthOnly["CustomerPresent1"]["ServiceId"],Guid_AuthOnly)
 
+###### Merchant Specific Tests ######
+MOTOTC = {"ServiceId":"A175B00001","ProfileId":"Generic_MOTO_TC","CustomerServicePhone":"303 5677890","Phone":"303 7675445","IndustryType":"MOTO","ServiceName":"Generic Sandbox BCP Terminal Capture","CustomerPresent":"MOTOCC","RuleCategories":["Deprecated"]}
+#EcommTC = {"ServiceId":"A175B00001","ProfileId":"Generic_Ecomm_TC","Phone":None,"IndustryType":"Ecommerce","ServiceName":"Generic Sandbox BCP Terminal Capture","CustomerPresent":"Ecommerce"}
+#SIS.SaveMerchantProfiles(base_url,sessiontoken,**MOTOTC)
+#SIS.GetMerchantProfile(base_url,sessiontoken,"Generic_MOTO_TC","A175B00001")
+#Guid_AuthOnly = TPS.Authorize(base_url,sessiontoken,**GenericTests.MerchantRules["MOTOMerch"])

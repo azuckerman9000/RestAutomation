@@ -28,7 +28,7 @@ SaveMerchantProfiles =  [{
                 "IndustryType": "Ecommerce",
                 "Location": None,
                 "MerchantType": None,
-                "PrintCustomerServicePhone": False,
+                #"PrintCustomerServicePhone": False,
                 "QualificationCodes": None,
                 "ReimbursementAttribute": None,
                 "SIC": None,
@@ -50,7 +50,8 @@ SaveMerchantProfiles =  [{
             }
         },
         "RestrictedOperations": None,
-        "HostedPayments": None
+        "HostedPayments": None,
+        "RuleCategories":None
     }]
 
 ApplicationData = {
