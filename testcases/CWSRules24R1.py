@@ -200,8 +200,9 @@ TPSTestCases = {
                                     "TokenIndicator":"VPAS",
                                     "InterchangeData":None
                                     },
-                "CustPresent" : {"ServiceId":"35EDC00001",
-                                         "MerchantProfileId":"Generic_Ecomm_HC",
+                "CustPresent" : {"ServiceId":"39C6700001",
+                                 "ApplicationProfileId":"4815",
+                                         "MerchantProfileId":"test_10",
                                          "ShippingData":None,
                                          "Address":{"Street1":"1st","City":"Denver","StateProvince":"CO","PostalCode":"80202","CountryCode":"USA"},                                         
                                          "EMVData":None,

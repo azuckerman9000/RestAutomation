@@ -28,7 +28,7 @@ SaveMerchantProfiles =  [{
                 "IndustryType": "Ecommerce",
                 "Location": None,
                 "MerchantType": None,
-                #"PrintCustomerServicePhone": False,
+                "PrintCustomerServicePhone": False,
                 "QualificationCodes": None,
                 "ReimbursementAttribute": None,
                 "SIC": None,

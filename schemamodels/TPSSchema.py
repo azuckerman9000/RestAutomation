@@ -132,7 +132,7 @@ Authorize = {
       "OrderNumber":"2",
       "EntryMode":"Keyed",
       "Reference":"jdhfjd",
-      "SignatureCaptured":False,
+      #"SignatureCaptured":False,
       "TransactionCode":"Override",
       "TransactionDateTime":"2015-04-03T13:50:16",
       "IS3DSecure":False,
@@ -186,6 +186,7 @@ Undo = {"$type": "Undo,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",
             "$type": "BankcardUndo,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard",
             "PINDebitReason":None,
             "ForceVoid":None,
+            "TenderData":Authorize["Transaction"]["TenderData"],
             "TransactionDateTime":None,
             "TransactionCode":None}
         }

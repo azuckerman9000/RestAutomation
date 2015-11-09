@@ -1,4 +1,4 @@
-from httprequests import SignOn, TPS, SIS
+from httprequests import SignOn, TPS, SIS, TMS
 from testcases import GenericTests
 from miscutils import dataquery
 
@@ -17,13 +17,19 @@ for testcase in Scenario_AuthOnly:
 #    TPS.Authorize(base_url,sessiontoken,**GenericTests.AuthOnly[testcase])
 #sessiontoken = SignOn.DelegatedSignOn(base_url,"6B2866C8FD500001",Idt)
 
-Guid_AuthOnly = TPS.Authorize(base_url,sessiontoken,**GenericTests.AllRules["AltCustServPhoneSad"])
+SignOn.SignOnWithUsernamePassword(base_url,"dootdoot","w4P5LiGm82S","4DBA36C8FD500001")
+#Guid_AuthOnly = TPS.Authorize(base_url,sessiontoken,**GenericTests.AllRules["EcommSecureSad"])
 #TPS.Adjust(base_url,sessiontoken,GenericTests.AuthOnly["CustomerPresent1"]["ServiceId"],Guid_AuthOnly)
-#TPS.Undo(base_url,sessiontoken,GenericTests.AuthOnly["CustomerPresent1"]["ServiceId"],Guid_AuthOnly)
+#TPS.Undo(base_url,sessiontoken,GenericTests.AllRules["BillingIntlAdrHappy"]["ServiceId"],Guid_AuthOnly,EcommerceSecurityData=None,CardSecurityData=None,EMVData=None)
+#TPS.Capture(base_url,sessiontoken,GenericTests.AllRules["BillingAdrHappy"]["ServiceId"],Guid_AuthOnly)
+#TPS.Capture(base_url,sessiontoken,GenericTests.AllRules["BillingAdrHappy"]["ServiceId"],Guid_AuthOnly)
+#TMS.QueryTransactionsSummary(base_url,sessiontoken,MerchantProfileIds=["Generic_Restaurant_HC"])
 
 ###### Merchant Specific Tests ######
-MOTOTC = {"ServiceId":"A175B00001","ProfileId":"Generic_MOTO_TC","CustomerServicePhone":"303 5677890","Phone":"303 7675445","IndustryType":"MOTO","ServiceName":"Generic Sandbox BCP Terminal Capture","CustomerPresent":"MOTOCC","RuleCategories":["Deprecated"]}
+#MOTOTC = {"ServiceId":"A175B00001","ProfileId":"Generic_MOTO_TC","CustomerServicePhone":"303 5677890","Phone":"303 3456789","IndustryType":"MOTO","ServiceName":"Generic Sandbox BCP Terminal Capture","CustomerPresent":"MOTOCC","RuleCategories":["Deprecated"]}
 #EcommTC = {"ServiceId":"A175B00001","ProfileId":"Generic_Ecomm_TC","Phone":None,"IndustryType":"Ecommerce","ServiceName":"Generic Sandbox BCP Terminal Capture","CustomerPresent":"Ecommerce"}
-#SIS.SaveMerchantProfiles(base_url,sessiontoken,**MOTOTC)
+#NGTSBX_RestaurantTC = {"ServiceId":"3CF9E00001","ProfileId":"NGT_SBX_Restaurant_HC","ServiceName":"EVO NGTrans BCP Host Capture","IndustryType":"Restaurant","CustomerPresent":"Present","EntryMode":"Track2DataFromMSR"}
+#TRNSBX_EcommTC = {"ServiceId":"372EC00001","ProfileId":"TRN_SBX_Ecomm_HC","ServiceName":"EVO Intl GmbH BCP Host Capture","IndustryType":"Ecommerce","CustomerPresent":"Ecommerce","EntryMode":"Keyed","CurrencyCode":"EUR"}
+#SIS.SaveMerchantProfiles(base_url,sessiontoken,**TRNSBX_EcommTC)
 #SIS.GetMerchantProfile(base_url,sessiontoken,"Generic_MOTO_TC","A175B00001")
 #Guid_AuthOnly = TPS.Authorize(base_url,sessiontoken,**GenericTests.MerchantRules["MOTOMerch"])

@@ -3,6 +3,8 @@
 ##### Service Ids #####
 ServiceId_GenHC = "35EDC00001"
 ServiceId_GenTC = "A175B00001"
+ServiceId_NGT_HC_SBX = "3CF9E00001"
+ServiceId_TRN_HC_SBX = "372EC00001"
 
 ##### Merchant Profile Ids #####
 MPID_MOTO_HC = "Generic_MOTO_HC"
@@ -13,13 +15,16 @@ MPID_MOTO_TC = "Generic_MOTO_TC"
 MPID_Ecomm_TC = "Generic_Ecomm_TC"
 MPID_Retail_TC = "Generic_Retail_TC"
 MPID_Restaurant_TC = "Generic_Restaurant_TC"
+MPID_Restaurant_NGT_HC_SBX = "NGT_SBX_Restaurant_HC"
+MPID_Ecomm_TRN_HC_SBX = "TRN_SBX_Ecomm_HC"
 
 ##### Test Cases #####
 
-AuthOnly = {
-            "CustomerPresent1":{
-                               "ServiceId":ServiceId_GenTC,
-                               "MerchantProfileId":MPID_Ecomm_TC,
+Dev = {
+            "DevTest":{
+                               "ServiceId":"DB21700001",
+                               "MerchantProfileId":"Dev Test 947 DB21700001",
+                               "ApplicationProfileId":"36563",
                                "CustomerData":None,                                                                       
                                "EMVData":None,
                                "ApplicationConfigurationData":None,
@@ -30,55 +35,7 @@ AuthOnly = {
                                "InterchangeData":None,
                                "CustomerPresent":"NotSet",
                                "TransactionDateTime":None
-                               },
-            "CustomerPresent2":{
-                               "ServiceId":ServiceId_GenTC,
-                               "MerchantProfileId":MPID_MOTO_TC,
-                               "ApplicationProfileId":"65360",
-                               "CustomerData":None,                                                                       
-                               "EMVData":None,
-                               "ApplicationConfigurationData":None,
-                               "CardSecurityData":None,
-                               "EcommerceSecurityData":None,
-                               "AlternativeMerchantData":None,
-                               "Level2Data":None,
-                               "InterchangeData":None,
-                               "CustomerPresent":"NotSet"
-                               #"EmployeeId":None
-                               },
-            "CustomerPresent3":{
-                               "ServiceId":ServiceId_GenTC,
-                               "MerchantProfileId":MPID_Retail_TC,
-                               #"ServiceId":"3CF9E00001",
-                               #"MerchantProfileId":"Kyle Test",
-                               "ApplicationProfileId":"65360",
-                               "CustomerData":None,                                                                       
-                               "EMVData":None,
-                               "ApplicationConfigurationData":None,
-                               "CardSecurityData":None,
-                               "EcommerceSecurityData":None,
-                               "AlternativeMerchantData":None,
-                               "Level2Data":None,
-                               "InterchangeData":None,
-                               "CustomerPresent":"NotSet",
-                               "Track2Data":"4003000123456781=15125025432198712345",
-                               "PAN":None,
-                               "EntryMode":"Track2DataFromMSR"                                                            
-                               },
-            "CustomerPresent4":{
-                               "ServiceId":ServiceId_GenTC,
-                               "MerchantProfileId":MPID_Restaurant_TC,
-                               "ApplicationProfileId":"65360",
-                               "CustomerData":None,                                                                       
-                               "EMVData":None,
-                               "ApplicationConfigurationData":None,
-                               "CardSecurityData":None,
-                               "EcommerceSecurityData":None,
-                               "AlternativeMerchantData":None,
-                               "Level2Data":None,
-                               "InterchangeData":None,
-                               "CustomerPresent":"NotSet"
-                               }
+                               }            
             }
 
 MerchantRules = {
@@ -113,9 +70,9 @@ MerchantRules = {
                  }
 
 AllRules  = {
-            "AcctTypeReq":{
-                               "ServiceId":ServiceId_GenHC,
-                               "MerchantProfileId":MPID_Restaurant_HC,
+            "AcctTypeHappy":{
+                               "ServiceId":ServiceId_NGT_HC_SBX,
+                               "MerchantProfileId":MPID_Restaurant_NGT_HC_SBX,
                                "ApplicationProfileId":"65360",
                                "CustomerData":None,                                                                       
                                "EMVData":None,
@@ -131,7 +88,29 @@ AllRules  = {
                                "PIN":"D8BC0FAF9BBD9B17",
                                "Track2Data":"4003000123456781=15125025432198712345",
                                "PAN":None,
-                               "EntryMode":"Track2DataFromMSR"                         
+                               "EntryMode":"Track2DataFromMSR",
+                               "AccountType":"CheckingAccount"                         
+                            },
+             "AcctTypeSad":{
+                               "ServiceId":ServiceId_NGT_HC_SBX,
+                               "MerchantProfileId":MPID_Restaurant_NGT_HC_SBX,
+                               "ApplicationProfileId":"65360",
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "AVSData":None,
+                               "InternationalAVSData":None,
+                               "CustomerPresent":"NotSet",
+                               "KeySerialNumber":"856290000060027C",
+                               "PIN":"D8BC0FAF9BBD9B17",
+                               "Track2Data":"4003000123456781=15125025432198712345",
+                               "PAN":None,
+                               "EntryMode":"Track2DataFromMSR",
+                               "AccountType":"NotSet"                         
                             },
              "BillingAdrHappy":{
                                "ServiceId":ServiceId_GenHC,
@@ -168,6 +147,66 @@ AllRules  = {
                                "PAN":None,
                                "EntryMode":"Track2DataFromMSR",
                                "Address":{"Street1":"1st","CountryCode":"USA"}                         
+                            },
+             "BillingIntlAdrHappy":{
+                               "ServiceId":ServiceId_TRN_HC_SBX,
+                               "MerchantProfileId":MPID_Ecomm_TRN_HC_SBX,
+                               "ApplicationProfileId":"65360",
+                               "ShippingData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CardSecurityData":None,
+                               "CustomerPresent":"NotSet",
+                               "InternationalAddress":{"Street1":"1st","City":"Denver","PostalCode":"80202","CountryCode":"USA"}                         
+                            },
+             "BillingIntlAdrSad":{
+                               "ServiceId":ServiceId_TRN_HC_SBX,
+                               "MerchantProfileId":MPID_Ecomm_TRN_HC_SBX,
+                               "ApplicationProfileId":"65360",
+                               "ShippingData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CardSecurityData":None,
+                               "CustomerPresent":"NotSet",
+                               "InternationalAddress":{"Street1":"1st","CountryCode":"USA"}                         
+                            },
+             "IntlAVSHappy":{
+                               "ServiceId":ServiceId_TRN_HC_SBX,
+                               "MerchantProfileId":MPID_Ecomm_TRN_HC_SBX,
+                               "ApplicationProfileId":"65360",
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "AVSData":None,
+                               "CustomerPresent":"NotSet",
+                               "InternationalAVSData":{"HouseNumber":"34","Street":"1st","City":"Denver","PostalCode":"80202","Country":"USA"}                         
+                            },
+             "IntlAVSSad":{
+                               "ServiceId":ServiceId_TRN_HC_SBX,
+                               "MerchantProfileId":MPID_Ecomm_TRN_HC_SBX,
+                               "ApplicationProfileId":"65360",
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "AVSData":None,
+                               "CustomerPresent":"NotSet",
+                               "InternationalAVSData":{"Street":"1st","City":"Denver","PostalCode":"80202","Country":"USA"}                         
                             },
              "ShippingAdrHappy":{
                                "ServiceId":ServiceId_GenHC,
@@ -297,7 +336,7 @@ AllRules  = {
                                "CustomerPresent":"NotSet",
                                "AlternativeMerchantData":{"Name":"Eververse"}
                                },
-             "EmployeeIdHappy":{
+             "EmployeeIdMOTOHappy":{
                                "ServiceId":ServiceId_GenTC,
                                "MerchantProfileId":MPID_MOTO_TC,
                                "ApplicationProfileId":"65360",
@@ -312,7 +351,7 @@ AllRules  = {
                                "CustomerPresent":"NotSet",
                                "EmployeeId":"23"                               
                                },
-             "EmployeeIdSad":{
+             "EmployeeIdMOTOSad":{
                                "ServiceId":ServiceId_GenTC,
                                "MerchantProfileId":MPID_MOTO_TC,
                                "ApplicationProfileId":"65360",
@@ -325,8 +364,76 @@ AllRules  = {
                                "Level2Data":None,
                                "InterchangeData":None,
                                "CustomerPresent":"NotSet",
-                               "EmployeeId":None                               
+                               "EmployeeId":None                                                           
                                },
+             "EmployeeIdRestaurantHappy":{
+                               "ServiceId":ServiceId_GenHC,
+                               "MerchantProfileId":MPID_Restaurant_HC,
+                               "ApplicationProfileId":"65360",
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "Level2Data":None, 
+                               "AlternativeMerchantData":None,                               
+                               "InterchangeData":None,
+                               "CardSecurityData":None,
+                               "CustomerPresent":"NotSet",                               
+                               "Track2Data":"4003000123456781=15125025432198712345",
+                               "PAN":None,
+                               "EntryMode":"Track2DataFromMSR",
+                               "SignatureCaptured":"True",
+                               "EmployeeId":"234"                 
+                            },
+             "EmployeeIdRestaurantSad":{
+                               "ServiceId":ServiceId_GenHC,
+                               "MerchantProfileId":MPID_Restaurant_HC,
+                               "ApplicationProfileId":"65360",
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "Level2Data":None, 
+                               "AlternativeMerchantData":None,                               
+                               "InterchangeData":None,
+                               "CardSecurityData":None,
+                               "CustomerPresent":"NotSet",                               
+                               "Track2Data":"4003000123456781=15125025432198712345",
+                               "PAN":None,
+                               "EntryMode":"Track2DataFromMSR",
+                               "SignatureCaptured":"True",
+                               "EmployeeId":None                 
+                            },
+             "EmployeeIdRetailHappy":{
+                               "ServiceId":ServiceId_GenTC,
+                               "MerchantProfileId":MPID_Retail_TC,
+                               "ApplicationProfileId":"65360",
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,
+                               "CardSecurityData":None,
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CustomerPresent":"NotSet",
+                               "EmployeeId":"23"                               
+                               },
+             "EmployeeIdRetailSad":{
+                               "ServiceId":ServiceId_GenTC,
+                               "MerchantProfileId":MPID_Retail_TC,
+                               "ApplicationProfileId":"65360",
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,
+                               "CardSecurityData":None,
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CustomerPresent":"NotSet",
+                               "EmployeeId":None                               
+                               },             
              "Level2Happy":{
                                "ServiceId":ServiceId_GenHC,
                                "MerchantProfileId":MPID_Restaurant_HC,
@@ -394,7 +501,7 @@ AllRules  = {
                                "CustomerPresent":"NotSet",                               
                                "Track2Data":"4003000123456781=15125025432198712345",
                                "PAN":None,
-                               "EntryMode":"Track2DataFromMSR",
+                               "EntryMode":"Track2DataFromMSR"
                                #"SignatureCaptured":None                   
                             },
              "LineItemHappy":{
@@ -432,5 +539,98 @@ AllRules  = {
                                "PAN":None,
                                "EntryMode":"Track2DataFromMSR",
                                "LineItemDetails":[{"Amount":"0.50","ProductCode":"xxs","DiscountAmount":"0.25"}]                
-                            }             
+                            },
+             "OrderNumEcommHappy":{
+                               "ServiceId":ServiceId_GenTC,
+                               "MerchantProfileId":MPID_Ecomm_TC,
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,
+                               "CardSecurityData":None,
+                               "EcommerceSecurityData":None,                               
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CustomerPresent":"NotSet",
+                               "TransactionDateTime":None,
+                               "AlternativeMerchantData":None,
+                               "OrderNumber":"45"                           
+                               },
+             "OrderNumEcommSad":{
+                               "ServiceId":ServiceId_GenTC,
+                               "MerchantProfileId":MPID_Ecomm_TC,
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,
+                               "CardSecurityData":None,
+                               "EcommerceSecurityData":None,                               
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CustomerPresent":"NotSet",
+                               "TransactionDateTime":None,
+                               "AlternativeMerchantData":None,
+                               "OrderNumber":None                                                         
+                               },
+             "CurrencyCodeHappy":{
+                               "ServiceId":ServiceId_TRN_HC_SBX,
+                               "MerchantProfileId":MPID_Ecomm_TRN_HC_SBX,
+                               "ApplicationProfileId":"65360",
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CardSecurityData":None,
+                               "CustomerPresent":"NotSet",
+                               "CurrencyCode":"EUR"                        
+                            },
+             "CurrencyCodeSad":{
+                               "ServiceId":ServiceId_TRN_HC_SBX,
+                               "MerchantProfileId":MPID_Ecomm_TRN_HC_SBX,
+                               "ApplicationProfileId":"65360",
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CardSecurityData":None,
+                               "CustomerPresent":"NotSet",
+                               "CurrencyCode":"NotSet"                        
+                            },
+             "EcommSecureHappy":{
+                               "ServiceId":ServiceId_GenTC,
+                               "MerchantProfileId":MPID_Ecomm_TC,
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,
+                               "CardSecurityData":None,                                                            
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CustomerPresent":"NotSet",
+                               "TransactionDateTime":None,
+                               "AlternativeMerchantData":None,
+                               "TokenData":"ghdfggfgdhs44f55",
+                               "XID":"45f4",
+                               "TokenIndicator":"VPAS"                         
+                               },
+             "EcommSecureSad":{
+                               "ServiceId":ServiceId_GenTC,
+                               "MerchantProfileId":MPID_Ecomm_TC,
+                               "CustomerData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,
+                               "CardSecurityData":None,                                                            
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CustomerPresent":"NotSet",
+                               "TransactionDateTime":None,
+                               "AlternativeMerchantData":None,
+                               "TokenData":"ghdfggfgdhs44f",
+                               "XID":"45f4",
+                               "TokenIndicator":"NotSet"
+                            }                                     
+                         
             }
