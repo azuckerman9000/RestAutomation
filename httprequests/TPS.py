@@ -1,5 +1,5 @@
 from schemamodels import TPSSchema
-from miscutils import logger
+from miscutils import logger,assertor
 import json, requests, copy
 from requests.auth import HTTPBasicAuth
 
@@ -21,7 +21,7 @@ def popSaveReq(req_dict,inputs):
     return temp_dict
 
 # HTTP Request Functions
-def Authorize(base_url,SessionToken,ServiceId,AppConfig=False,**kwargs):
+def Authorize(base_url,SessionToken,ServiceId,AppConfig=False,assertions=None,**kwargs):
     request_template = copy.deepcopy(getattr(TPSSchema,"Authorize"))       
     body = setReq(request_template,**kwargs)
     
@@ -32,9 +32,10 @@ def Authorize(base_url,SessionToken,ServiceId,AppConfig=False,**kwargs):
     url = base_url + "TPS.svc/" + ServiceId
     try:
         r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
-        logger.Log(r,"Authorize")
+        logger.Log(r,"Authorize")        
         r.raise_for_status()
         print("--Authorize returned successful")
+        logger.LogAssertions(assertor.assertor(r,assertions))
         return json.loads(r.text)["TransactionId"]                       
     except requests.exceptions.HTTPError as Error:
         print("--Authorize Returned Error: %s." % Error)            
@@ -152,7 +153,7 @@ def Resubmit(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
     request_template = copy.deepcopy(getattr(TPSSchema,"Resubmit"))        
     body = setReq(request_template,**kwargs)
     
-    if "PaymentAuthorizationResponse" in kwargs.keys(): #If PaRes is passed in request, change type to 3Dsecure Resubmit
+    if "PaymentAuthorizationRequest" in kwargs.keys(): #If PaReq is passed in request, change type to 3Dsecure Resubmit
         body["Transaction"]["$type"] = "Resubmit3DSecure,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard"
             
     url = base_url + "TPS.svc/" + ServiceId

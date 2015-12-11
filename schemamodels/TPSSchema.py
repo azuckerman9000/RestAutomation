@@ -9,15 +9,15 @@ Authorize = {
         "ApplicationAttended":True,
         "ApplicationLocation":"OnPremises",
         "HardwareType":"PC",
-        "PINCapability":"PINNotSupported",
-        "ReadCapability":"MSRKeyICC",
+        "PINCapability":"PINVerifiedByDevice",
+        "ReadCapability":"MSREMVICC",
         "EMVTerminalData":{
             "CardDataOutputCapability":"ICC",
-            "CardRetentionCapability":True,
+            "CardRetentionCapability":False,
             "CardholderAuthenticationCapability":"PIN",
             "PINMaxCharacters":"P12",
-            "TerminalOperator":"CardAcceptorOp",
-            "TerminalOutputCapability":"PrintDisplay"
+            "TerminalOperator":"CustOp",
+            "TerminalOutputCapability":"Display"
             }        
         },
     "CustomerData":{
@@ -135,7 +135,7 @@ Authorize = {
       #"SignatureCaptured":False,
       "TransactionCode":"Override",
       "TransactionDateTime":"2015-04-03T13:50:16",
-      "IS3DSecure":False,
+      "Is3DSecure":False,
       "CardholderAuthenticationEntity":"NotSet",
       "CardPresence":False,
       "CashBackAmount":"0.00",

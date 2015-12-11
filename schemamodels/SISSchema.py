@@ -37,7 +37,16 @@ SaveMerchantProfiles =  [{
                 "SharingGroup": None,
                 "StoreId": "9",
                 "TerminalId": "12345",
-                "TimeZoneDifferential": None
+                "TimeZoneDifferential": None,
+                "CardBrandIdentifiers_3DSecure":[
+                                                 {"MerchantNumber":None,
+                                                  "MerchantBankId":None,
+                                                  "MerchantUrl":None,
+                                                  "CardBrand3DSecureProgram":"NotSet",
+                                                  "DirectoryServerUrl":None,
+                                                  "RootCertificate":None
+                                                  }
+                                                 ]
             }
         },
         "TransactionData": {

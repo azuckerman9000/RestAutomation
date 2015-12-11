@@ -634,3 +634,38 @@ AllRules  = {
                             }                                     
                          
             }
+
+MPI = {
+       "Happy1": {
+                  "ServiceId":ServiceId_GenHC,
+                  "MerchantProfileId":MPID_Ecomm_HC,
+                  "ApplicationProfileId":"65360",
+                  "CustomerData":None,                                                                       
+                  "EMVData":None,
+                  "ApplicationConfigurationData":None,                               
+                  "EcommerceSecurityData":None,
+                  "AlternativeMerchantData":None,
+                  "Level2Data":None,
+                  "InterchangeData":None,
+                  "CardSecurityData":None,
+                  "CustomerPresent":"NotSet",
+                  "PAN":"4111111111111111",
+                  "Is3DSecure":True                   
+                  },
+       "Token":{
+                "PaymentAccountDataToken":"ba2a7926-776a-4412-93d2-d194f8bd4ceb69490830-96f4-448f-b38d-145c8c3ba335",
+                "ServiceId":ServiceId_GenHC,
+                  "MerchantProfileId":MPID_Ecomm_HC,
+                  "ApplicationProfileId":"65360",
+                  "CustomerData":None,                                                                       
+                  "EMVData":None,
+                  "ApplicationConfigurationData":None,                               
+                  "EcommerceSecurityData":None,
+                  "AlternativeMerchantData":None,
+                  "Level2Data":None,
+                  "InterchangeData":None,
+                  "CardSecurityData":None,
+                  "CustomerPresent":"NotSet",
+                  "CardData":None
+                }
+       }

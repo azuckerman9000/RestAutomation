@@ -39,12 +39,13 @@ sixb_sessiontoken = SignOn.SignOnWithToken(base_url,dataquery.getIdentityToken("
 
 P2PE_sessiontoken = SignOn.SignOnWithToken(base_url,P2PE_Idt)
 #SignOn.ChangePassword(base_url,"kjones","Wb3x5JCa84F",P2PE_ServiceKey,"Passw0rd1")
-P2PE_sessiontoken = SignOn.SignOnWithUsernamePassword(base_url,"Keymasta","Passw0rd1",P2PE_ServiceKey)["SessionToken"]
+#P2PE_sessiontoken = SignOn.SignOnWithUsernamePassword(base_url,"Keymasta","Passw0rd1",P2PE_ServiceKey)["SessionToken"]
 
 
 ############ RequestKEY ################################
 #SIS.GetServiceInformation(base_url,sixb_sessiontoken)
-#SIS.SaveMerchantProfiles(base_url,P2PE_sessiontoken,ProfileId=enc_MPID,ServiceId=enc_ServiceId,EntryMode="ContactlessMChipOrSmartCard",CustomerPresent="Present",IndustryType="Retail")
+#SIS.SaveMerchantProfiles(base_url,sixb_sessiontoken,ProfileId=ngt_MPID3,ServiceId=ngt_ServiceId,EntryMode="TrackDataFromMSR",CustomerPresent="Present",IndustryType="Retail",MerchantId="6000006",TerminalId="98765432160601")
+#SIS.SaveMerchantProfiles(base_url,sixb_sessiontoken,ProfileId="NGT_H2H_HC",ServiceId="1B04F00001",EntryMode="TrackDataFromMSR",CustomerPresent="Present",IndustryType="Retail",MerchantId="6000006",TerminalId="98765432160601")
 #TPS.RequestKey("https://api.ciptest.goevo.local/2.1.23/",P2PE_sessiontoken,enc_ServiceId,MerchantProfileId=enc_MPID,**Injection)
 
 ########### Encryption Transactions ###########################
@@ -58,6 +59,10 @@ P2PE_sessiontoken = SignOn.SignOnWithUsernamePassword(base_url,"Keymasta","Passw
 #TPS.AuthorizeAndCapture(base_url,bb_sessiontoken,ngt_ServiceId,MerchantProfileId=ngt_MPID1,InternationalAVSData=None,EcommerceSecurityData=None,CustomerPresent="Present",AccountType="CheckingAccount",EntryMode="Track2DataFromMSR",Track2Data="6011000995500000=25121011111199911111",**Encrypted_PIN)
 #TMS.QueryTransactionsSummary(base_url,bb_sessiontoken,MerchantProfileIds=[ngt_MPID1])l
 #TPS.Authorize(base_url,sixb_sessiontoken,ngt_ServiceId,MerchantProfileId=ngt_MPID3,CardData=None,CardSecurityData=None,EcommerceSecurityData=None,CustomerPresent="Present",EntryMode="ContactlessMChipOrSmartCard",**Encrypted_EMV_Amex)
+#TPS.Authorize("https://api.ciptest.goevo.local/2.1.25/REST/",sixb_sessiontoken,ngt_ServiceId,MerchantProfileId=ngt_MPID3,AppConfig=True,CardData=None,CardSecurityData=None,EcommerceSecurityData=None,CustomerData=None,EMVData=None,AlternativeMerchantData=None,InterchangeData=None,Level2Data=None,SecurePaymentAccountData="A1433589A9C15F89B6CADEF39D72E842AF412B52BF099171EA9FEC5B15FB16E0CA13B9815E82C4C5",DeviceSerialNumber="88888806500285",VendorId="3E3246482E",Amount="36.00",EncryptionKeyId="8888880650028520043C",EntryMode="Track2DataFromMSR",CustomerPresent="Present")
+TPS.Authorize("https://api.ciptest.goevo.local/2.1.25/REST/",sixb_sessiontoken,"1B04F00001",MerchantProfileId="NGT_H2H_HC",AppConfig=True,CardData=None,CardSecurityData=None,EcommerceSecurityData=None,CustomerData=None,EMVData=None,AlternativeMerchantData=None,InterchangeData=None,Level2Data=None,SecurePaymentAccountData="174DDE8041A112B02EC04395838A1CA307BA4A64BA213317443C0A5C1E0F43C0615EA69615018FF1",DeviceSerialNumber="88888806500285",VendorId="3E3246482E",Amount="36.00",EncryptionKeyId="8888882750011620001F",EntryMode="Track2DataFromMSR",CustomerPresent="Present")
+#TPS.Authorize("https://api.ciptest.goevo.local/2.1.25/REST/",sixb_sessiontoken,ngt_ServiceId,MerchantProfileId=ngt_MPID3,AppConfig=True,CardData=None,CardSecurityData=None,EcommerceSecurityData=None,CustomerData=None,EMVData=None,AlternativeMerchantData=None,InterchangeData=None,Level2Data=None,SecurePaymentAccountData="4CB760B87485F0BC40EAEEF4A15157E0401C38EE3B57DB4C2739699C00B713D3EABCA0A240C8E6F1BD20F50D2C926628573F806B6632E73BB1D9BCCF4C8A3F2F652831A85F183154E742C7920465CFF1",DeviceSerialNumber="88888806500285",VendorId="3E3246482E",Amount="36.00",EncryptionKeyId="8888880650028520043C",EntryMode="TrackDataFromMSR",CustomerPresent="Present")
+#TPS.Authorize("https://api.ciptest.goevo.local/2.1.25/REST/",sixb_sessiontoken,"1B04F00001",MerchantProfileId="NGT_H2H_HC",AppConfig=True,CardData=None,CardSecurityData=None,EcommerceSecurityData=None,CustomerData=None,EMVData=None,AlternativeMerchantData=None,InterchangeData=None,Level2Data=None,SecurePaymentAccountData="4CB760B87485F0BC40EAEEF4A15157E0401C38EE3B57DB4C2739699C00B713D3EABCA0A240C8E6F1BD20F50D2C926628573F806B6632E73BB1D9BCCF4C8A3F2F652831A85F183154E742C7920465CFF1",DeviceSerialNumber="88888806500285",VendorId="3E3246482E",Amount="36.00",EncryptionKeyId="8888880650028520043C",EntryMode="TrackDataFromMSR",CustomerPresent="Present")
 ########### Tokenization ###################
 #TPS.Authorize(base_url,bb_sessiontoken,ngt_ServiceId,MerchantProfileId=ngt_MPID1,CardSecurityData=None,EcommerceSecurityData=None,CustomerId="3",BusinessName="Apple",Address={"Street1":"1st33","City":"Denver","StateProvince":"CO","PostalCode":"80202","CountryCode":"USA"})
 #TPS.Authorize(base_url,bb_sessiontoken,ngt_ServiceId,MerchantProfileId=ngt_MPID1,CardSecurityData=None,CardData=None,EcommerceSecurityData=None,PaymentAccountDataToken="940a456e-669f-4435-931d-2bc2402066a8b4a3a296-6f83-4184-8577-476a2e70efc7")
@@ -71,5 +76,5 @@ P2PE_sessiontoken = SignOn.SignOnWithUsernamePassword(base_url,"Keymasta","Passw
 #cap_guid = TPS.Capture(base_url,bb_sessiontoken,trn_ServiceId,auth_guid)
 #TPS.ReturnById(base_url,bb_sessiontoken,trn_ServiceId,cap_guid,Amount="1.00",TenderData=None)
 #TMS.QueryTransactionsSummary(base_url,bb_sessiontoken,TransactionDateRange={"StartDateTime":"2015-07-01T14:08:41.237Z","EndDateTime":"2015-07-23T14:08:41.237Z"},MerchantProfileIds=["EncyrptionMerchantA"])
-TMS.QueryTransactionDetails(base_url,bb_sessiontoken,TransactionDateRange={"StartDateTime":"2015-07-01T14:08:41.237Z","EndDateTime":"2015-07-23T14:08:41.237Z"},MerchantProfileIds=["EncyrptionMerchantA"])
+#TMS.QueryTransactionDetails(base_url,bb_sessiontoken,TransactionDateRange={"StartDateTime":"2015-07-01T14:08:41.237Z","EndDateTime":"2015-07-23T14:08:41.237Z"},MerchantProfileIds=["EncyrptionMerchantA"])
 #TMS.QueryTransactionFamilies(base_url,sixb_sessiontoken,TransactionIds=["985980F782CE4F9192403581BDDB889E"],MerchantProfileIds=["HCRestaurantMerch"])

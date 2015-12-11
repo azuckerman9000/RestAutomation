@@ -55,6 +55,19 @@ def ChangePassword(base_url,Username,Password,ServiceKey,NewPassword):
         print("--ChangePassword Returned Error: %s." % Error)            
         return
     
+def ChangeEmail(base_url,Username,Password,ServiceKey,NewEmail):
+    url = base_url + "SIS.svc/user/" + Username + "?ServiceKey=" + ServiceKey
+    body = {"Email":NewEmail}
+    try:
+        r = requests.put(url, data = json.dumps(body), auth = HTTPBasicAuth(Username,Password),headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"ChangeEmail")
+        r.raise_for_status()
+        print("--ChangeEmail Successfully to",NewEmail)
+        return
+    except requests.exceptions.HTTPError as Error:
+        print("--ChangeEmail Returned Error: %s." % Error)            
+        return
+    
 def GetUserExpiration(base_url,Username,Password,ServiceKey):
     url = base_url + "SIS.svc/user/" + Username + "/expiration?ServiceKey=" + ServiceKey
     try:
@@ -64,4 +77,63 @@ def GetUserExpiration(base_url,Username,Password,ServiceKey):
         print("--GetUserExpiration successful.", r.text)        
     except requests.exceptions.HTTPError as Error:
         print("--GetUserExpiration  Returned Error: %s." % Error)            
+        return
+    
+def RequestPasswordReset(base_url,Username,ServiceKey):
+    url = base_url + "SIS.svc/user/" + Username + "/passwordreset?ServiceKey=" + ServiceKey
+    try:
+        r = requests.get(url,auth = HTTPBasicAuth(Username,""),headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"RequestPasswordReset")
+        r.raise_for_status()
+        print("--RequestPasswordReset successful.", r.text)
+        return json.loads(r.text)["SecurityQuestionToken"]        
+    except requests.exceptions.HTTPError as Error:
+        print("--RequestPasswordReset  Returned Error: %s." % Error)            
+        return
+    
+def ResetPassword(base_url,Username,ServiceKey,securityQuestionToken,securityAnswer):
+    url = base_url + "SIS.svc/user/" + Username + "?ServiceKey=" + ServiceKey
+    body ={"securityQuestionToken":securityQuestionToken,"securityAnswer":securityAnswer}
+    try:
+        r = requests.put(url,auth = HTTPBasicAuth(Username,""), data = json.dumps(body),headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"ResetPassword")
+        r.raise_for_status()
+        print("--ResetPassword Successfully")        
+    except requests.exceptions.HTTPError as Error:
+        print("--ResetPassword Returned Error: %s." % Error)            
+        return
+    
+def GetSecurityQuestions(base_url,Username,Password,ServiceKey):
+    url = base_url + "SIS.svc/user/" + Username + "/securityQuestions?ServiceKey=" + ServiceKey
+    try:
+        r = requests.get(url,auth = HTTPBasicAuth(Username,Password),headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"GetSecurityQuestions")
+        r.raise_for_status()
+        print("--GetSecurityQuestions successful.", r.text)        
+    except requests.exceptions.HTTPError as Error:
+        print("--GetSecurityQuestions Returned Error: %s." % Error)            
+        return
+    
+def GetAvailableSecurityQuestions(base_url,Username,Password,ServiceKey):
+    url = base_url + "SIS.svc/availablesecurityQuestions?serviceKey=" + ServiceKey
+    try:
+        r = requests.get(url,auth = HTTPBasicAuth(Username,Password),headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"GetAvailableSecurityQuestions")
+        r.raise_for_status()
+        print("--GetAvailableSecurityQuestions successful.", r.text)        
+    except requests.exceptions.HTTPError as Error:
+        print("--GetAvailableSecurityQuestions Returned Error: %s." % Error)            
+        return
+
+def SaveSecurityQuestions(base_url,Username,Password,ServiceKey,securityAnswers):
+    url = base_url + "SIS.svc/user/" + Username + "?ServiceKey=" + ServiceKey
+    body = {"securityAnswers":securityAnswers}
+    try:
+        r = requests.put(url,auth = HTTPBasicAuth(Username,Password), data = json.dumps(body),headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"SaveSecurityQuestions")
+        r.raise_for_status()
+        print("--SaveSecurityQuestions Successfully")
+        return
+    except requests.exceptions.HTTPError as Error:
+        print("--SaveSecurityQuestions Returned Error: %s." % Error)            
         return
