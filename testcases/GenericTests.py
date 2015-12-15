@@ -650,7 +650,8 @@ MPI = {
                   "CardSecurityData":None,
                   "CustomerPresent":"NotSet",
                   "PAN":"4111111111111111",
-                  "Is3DSecure":True                   
+                  "Is3DSecure":True,
+                  "assertions":[("exists","PaymentAccountDataToken",True),("exists","PaymentAuthorizationRequest",True),("isvalue","TransactionState","Declined"),("isvalue","StatusMessage","3D Eligible")]                   
                   },
        "Token":{
                 "PaymentAccountDataToken":"ba2a7926-776a-4412-93d2-d194f8bd4ceb69490830-96f4-448f-b38d-145c8c3ba335",

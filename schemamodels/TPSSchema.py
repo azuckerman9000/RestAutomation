@@ -203,7 +203,7 @@ Adjust = {"$type": "Adjust,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest
 Resubmit = {"$type": "ResubmitTransaction,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",            
             "Transaction":
                 {"TransactionId":None,
-                 "CVV":None,
+                 "CVV":None,                 
                  "ResubmitReason":"NotSet",
                  "PaymentAuthorizationResponse":None},
             "ApplicationProfileId": "4084"

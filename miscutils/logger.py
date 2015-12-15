@@ -21,6 +21,8 @@ def Log(resp_obj,op_name):
     logfile.close()
     
 def LogAssertions(details):
+    if details is None:
+        return
     data_files = os.path.join(os.path.dirname( __file__ ), '..', 'files')
     datapath = os.path.abspath(os.path.join(data_files,"testlog.txt"))
     logfile = open(datapath, "a")
@@ -28,7 +30,7 @@ def LogAssertions(details):
     detail_string = "{"
     for assertion_result in details:
         detail_string += str(assertion_result) 
-    detail_string += "}"   
+    detail_string += "}\n"   
     logfile.write(detail_string)
     logfile.close()
     
