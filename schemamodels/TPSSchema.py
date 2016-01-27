@@ -43,7 +43,8 @@ Authorize = {
         "Expire":"1215",
         "PAN":"4003000123456781",
         "Track1Data":None,
-        "Track2Data":None
+        "Track2Data":None,
+        "ChipConditionCode":None
         },
       "CardSecurityData":{
         "AVSData":{

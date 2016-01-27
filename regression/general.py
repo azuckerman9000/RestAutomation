@@ -13,4 +13,5 @@ dd_sessiontoken = SignOn.SignOnWithToken(base_url,DDIdt) #For ServiceKey DD6265F
 #SIS.SaveMerchantProfiles(base_url,dd_sessiontoken,ProfileId="eServices_H2H_HC",ServiceId="C668F00001",CardBrandIdentifiers_3DSecure=None,EntryMode="TrackDataFromMSR",CustomerPresent="Present",IndustryType="Retail",MerchantId="400000000000000",TerminalId="40000000")
 
 
-Guid_AuthOnly = TPS.Authorize(base_url,dd_sessiontoken,**regression.Adaptor["eSvc_EncEMV"])
+Guid_AuthOnly = TPS.Authorize(base_url,sixb_sessiontoken,**regression.Adaptor["NGT_EncEMV"])
+#Guid_AuthOnly = TPS.Authorize(base_url,fourd_sessiontoken,ChipConditionCode="1",**regression.Generic["Level2Data"])
