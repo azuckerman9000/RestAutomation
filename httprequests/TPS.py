@@ -21,6 +21,17 @@ def popSaveReq(req_dict,inputs):
     return temp_dict
 
 # HTTP Request Functions
+def Ping(base_url,SessionToken):
+    url = base_url + "TPS.svc/ping"
+    try:
+        r = requests.get(url, auth = HTTPBasicAuth(SessionToken,''), headers = {"content-type":"application/json"}, verify = False)        
+        logger.Log(r,"Ping")
+        r.raise_for_status()
+        print("--Ping returned successful")                       
+    except requests.exceptions.HTTPError as Error:
+        print("--Ping Returned Error: %s." % Error)            
+        return
+
 def Authorize(base_url,SessionToken,ServiceId,AppConfig=False,assertions=None,**kwargs):
     request_template = copy.deepcopy(getattr(TPSSchema,"Authorize"))       
     body = setReq(request_template,**kwargs)
@@ -41,7 +52,7 @@ def Authorize(base_url,SessionToken,ServiceId,AppConfig=False,assertions=None,**
         print("--Authorize Returned Error: %s." % Error)            
         return
     
-def AuthorizeAndCapture(base_url,SessionToken,ServiceId,AppConfig=False,**kwargs):
+def AuthorizeAndCapture(base_url,SessionToken,ServiceId,AppConfig=False,assertions=None,**kwargs):
     request_template = copy.deepcopy(getattr(TPSSchema,"Authorize"))  
     body = setReq(request_template,**kwargs)
           
@@ -56,7 +67,8 @@ def AuthorizeAndCapture(base_url,SessionToken,ServiceId,AppConfig=False,**kwargs
         logger.Log(r,"AuthorizeAndCapture")
         r.raise_for_status()
         print("--AuthorizeAndCapture returned successful")
-        return json.loads(r.text)["TransactionId"]               
+        logger.LogAssertions(assertor.assertor(r,assertions))
+        return json.loads(r.text)              
     except requests.exceptions.HTTPError as Error:
         print("--AuthorizeAndCapture Returned Error: %s." % Error)            
         return
@@ -82,6 +94,10 @@ def Undo(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
         return
     request_template = copy.deepcopy(getattr(TPSSchema,"Undo")) 
     body = setReq(request_template,**kwargs)
+    
+    del body["DifferenceData"]["TenderData"]["$type"]
+    body["DifferenceData"]["TransactionId"] = TxnGUID
+    
     url = base_url + "TPS.svc/" + ServiceId + "/" + TxnGUID
     try:
         r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)        
@@ -181,6 +197,18 @@ def RequestKey(base_url,SessionToken,ServiceId,**kwargs):
         print("--RequestKey Returned Error: %s." % Error)            
         return
     
+def SendReceipt(base_url,SessionToken,TxnGUID,Email):
+    url = base_url + "TPS.svc/sendReceipt"
+    body = {"TransactionId":TxnGUID,"Email":Email}
+    try:
+        r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"SendRecipt")
+        r.raise_for_status()
+        print("--SendReceipt returned successful")                       
+    except requests.exceptions.HTTPError as Error:
+        print("--SendReceipt Returned Error: %s." % Error)            
+        return
+    
 def GetPARes(PaReq):
     url = "https://dropit.3dsecure.net:9443/PIT/ACS"    
     body = {"PaReq":PaReq,"TermUrl":"127.0.0.1","MD":"90128006"}    
@@ -193,5 +221,4 @@ def GetPARes(PaReq):
         r.raise_for_status()
     except requests.exceptions.HTTPError as Error:
         print("--GetPARes Returned Error: %s." % Error)            
-        return
-        
+        return    

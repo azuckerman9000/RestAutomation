@@ -8,4 +8,4 @@ base_url = "https://api.cip.goevo.com/2.1.25/REST/"
 trn_ngt_sessiontoken = SignOn.SignOnWithToken(base_url,IdentityToken)
 #SIS.SaveMerchantProfiles(base_url,trn_ngt_sessiontoken,ProfileId="SnapProdGHC",ServiceId="4379D1300C",TerminalId="54747",MerchantId="54747_EVO",ServiceName="EVO Intl GmbH BCP Host Capture")
 #SIS.GetMerchantProfile(base_url,trn_ngt_sessiontoken,MerchantProfileId,ServiceId)
-TPS.Authorize(base_url,trn_ngt_sessiontoken,ServiceId,MerchantProfileId=MerchantProfileId,CVData="123",CVDataProvided="Provided",PAN="4003000123456781",Expire="1215",ApplicationProfileId="1")
+TPS.Authorize(base_url,trn_ngt_sessiontoken,ServiceId,MerchantProfileId=MerchantProfileId,CVData="123",CVDataProvided="Provided",PAN="4003000123456781",Expire="1215",ApplicationProfileId="1",CustomerData=None,EMVData=None,ApplicationConfigurationData=None,EcommerceSecurityData=None,AlternativeMerchantData=None,AVSData=None,IntlAVSData=None,Level2Data=None,InterchangeData=None)

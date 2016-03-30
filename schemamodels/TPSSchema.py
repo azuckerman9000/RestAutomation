@@ -44,6 +44,7 @@ Authorize = {
         "PAN":"4003000123456781",
         "Track1Data":None,
         "Track2Data":None,
+        "CardSequenceNumber":None,
         "ChipConditionCode":None
         },
       "CardSecurityData":{
@@ -183,13 +184,15 @@ Capture = {"$type": "Capture,http://schemas.evosnap.com/CWS/v2.0/Transactions/Re
 Undo = {"$type": "Undo,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",
         "ApplicationProfileId": "4084",
         "Addendum":None,
-        "BankcardUndo": {
+        "DifferenceData": {
             "$type": "BankcardUndo,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard",
-            "PINDebitReason":None,
-            "ForceVoid":None,
+            "PINDebitReason":"NotSet",
+            "ForceVoid":False,
             "TenderData":Authorize["Transaction"]["TenderData"],
             "TransactionDateTime":None,
-            "TransactionCode":None}
+            "TransactionCode":"NotSet",
+            "TransactionId":None
+            }
         }
 
 Adjust = {"$type": "Adjust,http://schemas.evosnap.com/CWS/v2.0/Transactions/Rest",

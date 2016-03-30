@@ -1,21 +1,16 @@
 UserInfo = {
+            #"$type":"UserInfo",
             "Email":None,
             "FirstName":None,
             "LastName":None,
             "Region":None,
             "Role":None,
-            "Username":None,
-            "Password":None,
-            "MerchantInfo": {
-                             "MerchantProfileId":None,
-                             "ServiceKey":None,
-                             "MerchantMetaData":None
-                             }
+            "Username":None,            
+            "MerchantProfileId":None,
+            "ServiceKey":None            
             }
 
-CreateUser = {              
-              "UserInfo":UserInfo
-              }
+
 
 UpdateUser = {
               "UserGuid":None,              
@@ -34,6 +29,19 @@ GetMerchants = {
                                     "Region":None,
                                     "SalesChannel":None,
                                     "ServiceKey":None
+                                    }
+                }
+
+GetPaymentApplications = {
+                "sortField":"CreatedDate",
+                "sortType":"Descending",
+                "pagingParameters": {
+                                     "Page":0,
+                                     "PageSize":50
+                                     },
+                "queryParameters": {                                    
+                                    "Region":None,
+                                    "SalesChannel":None                                    
                                     }
                 }
 

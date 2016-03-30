@@ -72,7 +72,7 @@ MerchantRules = {
 AllRules  = {
             "AcctTypeHappy":{
                                "ServiceId":ServiceId_NGT_HC_SBX,
-                               "MerchantProfileId":MPID_Restaurant_NGT_HC_SBX,
+                               "MerchantProfileId":MPID_Restaurant_NGT_HC_SBX,                               
                                "ApplicationProfileId":"65360",
                                "CustomerData":None,                                                                       
                                "EMVData":None,
@@ -111,6 +111,21 @@ AllRules  = {
                                "PAN":None,
                                "EntryMode":"Track2DataFromMSR",
                                "AccountType":"NotSet"                         
+                            },
+             "CreateUserTest":{
+                               "ServiceId":ServiceId_NGT_HC_SBX,
+                               "MerchantProfileId":"TestAlanProfile",
+                               "ApplicationProfileId":"65360",
+                               "ShippingData":None,                                                                       
+                               "EMVData":None,
+                               "ApplicationConfigurationData":None,                               
+                               "EcommerceSecurityData":None,
+                               "AlternativeMerchantData":None,
+                               "Level2Data":None,
+                               "InterchangeData":None,
+                               "CardSecurityData":None,
+                               "CustomerPresent":"NotSet",
+                               "CustomerData":None                    
                             },
              "BillingAdrHappy":{
                                "ServiceId":ServiceId_GenHC,
@@ -636,7 +651,27 @@ AllRules  = {
             }
 
 MPI = {
-       "Happy1": {
+       "Is3D_Visa": {
+                  "ServiceId":ServiceId_GenHC,
+                  "MerchantProfileId":MPID_Ecomm_HC,
+                  "ApplicationProfileId":"65360",
+                  "CustomerData":None,                                                                       
+                  "EMVData":None,
+                  "ApplicationConfigurationData":None,                               
+                  "EcommerceSecurityData":None,
+                  "AlternativeMerchantData":None,
+                  "Level2Data":None,
+                  "InterchangeData":None,                  
+                  "CustomerPresent":"NotSet",
+                  "PAN":"4111111111111111",                  
+                  "CVData":"200",
+                  "CVDataProvided":"Provided",                  
+                  "AVSData":None,
+                  "IntlAVSData":None,                  
+                  "Is3DSecure":True,
+                  "assertions":[("exists","PaymentAccountDataToken",True),("exists","PaymentAuthorizationRequest",True),("isvalue","TransactionState","Declined"),("isvalue","StatusMessage","3D Eligible")]                   
+                  },
+       "Is3D_False": {
                   "ServiceId":ServiceId_GenHC,
                   "MerchantProfileId":MPID_Ecomm_HC,
                   "ApplicationProfileId":"65360",
@@ -651,10 +686,10 @@ MPI = {
                   "PAN":"4111111111111111",
                   "CVData":"200",
                   "AVSData":None,
-                  "IntlAVSData":None,
+                  "InternationalAVSData":None,
                   "CVDataProvided":"Provided",
-                  "Is3DSecure":True,
-                  "assertions":[("exists","PaymentAccountDataToken",True),("exists","PaymentAuthorizationRequest",True),("isvalue","TransactionState","Declined"),("isvalue","StatusMessage","3D Eligible")]                   
+                  "Is3DSecure":False,
+                  "assertions":[("exists","PaymentAccountDataToken",True),("exists","PaymentAuthorizationRequest",False),("isvalue","TransactionState","Authorized"),("isvalue","StatusMessage","Approved")]                   
                   },
        "Token":{
                 "PaymentAccountDataToken":"ba2a7926-776a-4412-93d2-d194f8bd4ceb69490830-96f4-448f-b38d-145c8c3ba335",
@@ -671,5 +706,30 @@ MPI = {
                   "CardSecurityData":None,
                   "CustomerPresent":"NotSet",
                   "CardData":None
-                }
+                },
+       "Magensa": {
+                  "ServiceId":"A121700011",
+                  "MerchantProfileId":"MagensaMerch",
+                  "ApplicationProfileId":"65360",
+                  "CustomerData":None,                                                                       
+                  "EMVData":None,
+                  "ApplicationConfigurationData":None,                               
+                  "EcommerceSecurityData":None,
+                  "AlternativeMerchantData":None,
+                  "Level2Data":None,
+                  "InterchangeData":None,                  
+                  "CustomerPresent":"NotSet",
+                  "CardData":None,
+                  "CVData":None,
+                  "AVSData":None,
+                  "InternationalAVSData":None,
+                  "CVDataProvided":"NotSet",
+                  "SecurePaymentAccountData":"DD7BCABE956D4B74E4CE45FC51E1189F2F16FFBD4EDE9ADFCA79B1A287E905294B1AB41357962352",
+                  "EncryptionKeyId":"9011880B1CBB650002EC",
+                  "SwipeStatus":"61403000",
+                  "DeviceSerialNumber":"B1CBB65090413AA",
+                  "IdentificationInformation":"942A557973B17481212F324E09DC9AFA4540EB74A25623740EFC02B762615931E31413DF7EA591045E6D24B31812FF2CF55CD1182FE3FC45",
+                  "Is3DSecure":False
+                  #"assertions":[("exists","PaymentAccountDataToken",True),("exists","PaymentAuthorizationRequest",False),("isvalue","TransactionState","Authorized"),("isvalue","StatusMessage","Approved")]                   
+                  }
        }

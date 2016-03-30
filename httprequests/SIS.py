@@ -89,10 +89,21 @@ def SaveApplicationData(base_url,SessionToken,**kwargs):
     body = setReq(request_template,**kwargs)    
     url = base_url + "SIS.svc/appProfile"
     try:
-        r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)
+        r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body[0],sort_keys=True), headers = {"content-type":"application/json"}, verify = False)
         logger.Log(r,"SaveApplicationData")
         r.raise_for_status()
         print("--Applicationdata Saved")        
     except requests.exceptions.HTTPError as Error:
         print("--SaveApplicationData Returned Error: %s." % Error)            
+        return
+
+def GetApplicationData(base_url,SessionToken,AppProfileId):     
+    url = base_url + "SIS.svc/appProfile/" + AppProfileId
+    try:
+        r = requests.get(url,auth = HTTPBasicAuth(SessionToken,''), headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"GetApplicationData")
+        r.raise_for_status()
+        print("--Applicationdata Returned")        
+    except requests.exceptions.HTTPError as Error:
+        print("--GetApplicationData Returned Error: %s." % Error)            
         return

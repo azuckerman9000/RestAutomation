@@ -24,9 +24,22 @@ def popSaveReq(req_dict,inputs):
 
 ######## UserManagement Operations ###############        
 def CreateUser(base_url,SessionToken,**kwargs):    
-    request_template = copy.deepcopy(getattr(AdminSchema,"CreateUser"))  
+    request_template = copy.deepcopy(getattr(AdminSchema,"UserInfo"))  
     body = setReq(request_template,**kwargs)   
     url = base_url + "Administration.svc/users/create"
+    try:
+        r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"CreateUser")
+        r.raise_for_status()
+        print("--User Created")        
+    except requests.exceptions.HTTPError as Error:
+        print("--CreateUser Returned Error: %s." % Error)            
+        return
+    
+def CreateUser_Secure(base_url,SessionToken,**kwargs):    
+    request_template = copy.deepcopy(getattr(AdminSchema,"UserInfo"))  
+    body = setReq(request_template,**kwargs)   
+    url = base_url + "TLS/REST/SecureMessaging.svc/users/create"
     try:
         r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)
         logger.Log(r,"CreateUser")
@@ -60,17 +73,63 @@ def AddRegionToUserCredential(base_url,SessionToken,userGuid,regionName):
         print("--AddRegionToUserCredential Returned Error: %s." % Error)            
         return
     
+def RemoveRegionFromUserCredential(base_url,SessionToken,userGuid,regionName):
+    url = base_url + "Administration.svc/users/" + userGuid +"/removeRegion/" + regionName
+    try:
+        r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"RemoveRegionFromUserCredential")
+        r.raise_for_status()
+        print("--Region removed from User")        
+    except requests.exceptions.HTTPError as Error:
+        print("--RemoveRegionFromUserCredential Returned Error: %s." % Error)            
+        return
+    
+def AddRoleToUserCredential(base_url,SessionToken,userGuid,roleName):
+    url = base_url + "Administration.svc/users/" + userGuid +"/addRole/" + roleName
+    try:
+        r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"AddRoleToUserCredential")
+        r.raise_for_status()
+        print("--Role added to User")        
+    except requests.exceptions.HTTPError as Error:
+        print("--AddRoleToUserCredential Returned Error: %s." % Error)            
+        return
+    
+def RemoveRoleFromUserCredential(base_url,SessionToken,userGuid,roleName):
+    url = base_url + "Administration.svc/users/" + userGuid +"/removeRole/" + roleName
+    try:
+        r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"RemoveRoleFromUserCredential")
+        r.raise_for_status()
+        print("--Role removed from User")        
+    except requests.exceptions.HTTPError as Error:
+        print("--RemoveRoleFromUserCredential Returned Error: %s." % Error)            
+        return
+    
 def AddMerchantToUserCredential(base_url,SessionToken,userGuid,**kwargs):
-    request_template = copy.deepcopy(getattr(AdminSchema,"AddMerchantToUserCredntial"))  
+    request_template = copy.deepcopy(getattr(AdminSchema,"AddMerchantToUserCredential"))  
     body = setReq(request_template,**kwargs)   
     url = base_url + "Administration.svc/users/" + userGuid +"/addMerchant"
     try:
         r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)
-        logger.Log(r,"AddMerchantToUserCredntial")
+        logger.Log(r,"AddMerchantToUserCredential")
         r.raise_for_status()
         print("--Merchant added to User")        
     except requests.exceptions.HTTPError as Error:
-        print("--AddMerchantToUserCredntial Returned Error: %s." % Error)            
+        print("--AddMerchantToUserCredential Returned Error: %s." % Error)            
+        return
+    
+def RemoveMerchantFromUserCredential(base_url,SessionToken,userGuid,**kwargs):
+    request_template = copy.deepcopy(getattr(AdminSchema,"AddMerchantToUserCredential"))  
+    body = setReq(request_template,**kwargs)   
+    url = base_url + "Administration.svc/users/" + userGuid +"/removeMerchant"
+    try:
+        r = requests.put(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"RemoveMerchantFromUserCredential")
+        r.raise_for_status()
+        print("--Merchant removed from User")        
+    except requests.exceptions.HTTPError as Error:
+        print("--RemoveMerchantFromUserCredential Returned Error: %s." % Error)            
         return
 
 ######## Query operations ############################    
@@ -85,6 +144,19 @@ def GetMerchants(base_url,SessionToken,**kwargs):
         print("--Retrieved Merchants")        
     except requests.exceptions.HTTPError as Error:
         print("--GetMerchants Returned Error: %s." % Error)            
+        return
+    
+def GetPaymentApplications(base_url,SessionToken,**kwargs):
+    request_template = copy.deepcopy(getattr(AdminSchema,"GetPaymentApplications"))  
+    body = setReq(request_template,**kwargs)   
+    url = base_url + "Administration.svc/paymentApplications"
+    try:
+        r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), data=json.dumps(body,sort_keys=True), headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"GetPaymentApplications")
+        r.raise_for_status()
+        print("--Retrieved PaymentApplications")        
+    except requests.exceptions.HTTPError as Error:
+        print("--GetPaymentApplications Returned Error: %s." % Error)            
         return
 
 def ListScopes(base_url,SessionToken):
@@ -129,4 +201,15 @@ def GetRoleClaims(base_url,SessionToken):
         print("--Retrieved RoleClaims")        
     except requests.exceptions.HTTPError as Error:
         print("--GetRoleClaims Returned Error: %s." % Error)            
+        return
+    
+def GetChildRoles(base_url,SessionToken):
+    url = base_url + "Administration.svc/childRoles"
+    try:
+        r = requests.post(url,auth = HTTPBasicAuth(SessionToken,''), headers = {"content-type":"application/json"}, verify = False)
+        logger.Log(r,"GetChildRoles")
+        r.raise_for_status()
+        print("--Retrieved ChildRoles")        
+    except requests.exceptions.HTTPError as Error:
+        print("--GetChildRoles Returned Error: %s." % Error)            
         return
