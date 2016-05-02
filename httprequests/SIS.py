@@ -16,7 +16,7 @@ def popSaveReq(req_dict,inputs):
     for key, value in req_dict.items():
         if isinstance(value,dict):
             popSaveReq(value,inputs)
-        elif key in inputs.keys():
+        if key in inputs.keys():
             temp_dict[key] = inputs[key]
     return temp_dict
 

@@ -90,6 +90,8 @@ Authorize = {
       "SecurePaymentAccountData":None,
       "SwipeStatus":None,      
       "CardholderIdType":"NotSet",
+      "WalletIdentifier":"NotSet",
+      "DeviceTypeIndicator":"NotSet",
       "EMVData":{
          "ApplicationId":"A0000000041010",
          "ApplicationInterchangeProfile":"5800",
@@ -134,7 +136,7 @@ Authorize = {
       "OrderNumber":"2",
       "EntryMode":"Keyed",
       "Reference":"jdhfjd",
-      #"SignatureCaptured":False,
+      "SignatureCaptured":False,
       "TransactionCode":"Override",
       "TransactionDateTime":"2015-04-03T13:50:16",
       "Is3DSecure":False,
@@ -154,7 +156,11 @@ Authorize = {
      "Level2Data":{
         "BaseAmount":None,
         "DiscountAmount":None,
-        "OrderNumber":None}
+        "OrderNumber":None},
+     "Geolocation": {
+                     "Latitude":0.0,
+                     "Longitude":0.0
+                     }
     },
   "InterchangeData":{
     "BillPayment":"NotSet",
@@ -217,7 +223,7 @@ ReturnById = {"$type": "ReturnById,http://schemas.evosnap.com/CWS/v2.0/Transacti
               "differenceData": 
                     {"$type": "BankcardReturnPro,http://schemas.evosnap.com/CWS/v2.0/Transactions/Bankcard/Pro",
                      "TransactionId":None,
-                     "Amount":None,
+                     "Amount":"1.00",
                      "TransactionCode":"NotSet",
                      "TransactionDateTime":None,
                      "Addendum":None,

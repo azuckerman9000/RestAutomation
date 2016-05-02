@@ -95,7 +95,7 @@ def Undo(base_url,SessionToken,ServiceId,TxnGUID,**kwargs):
     request_template = copy.deepcopy(getattr(TPSSchema,"Undo")) 
     body = setReq(request_template,**kwargs)
     
-    del body["DifferenceData"]["TenderData"]["$type"]
+    #del body["DifferenceData"]["TenderData"]["$type"]
     body["DifferenceData"]["TransactionId"] = TxnGUID
     
     url = base_url + "TPS.svc/" + ServiceId + "/" + TxnGUID
