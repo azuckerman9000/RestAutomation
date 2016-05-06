@@ -38,7 +38,14 @@ Subscription = {
                 "AutoRenew":False
                 }
 
-SaveSubscription = {
+CustomerId = {
+              "CustomerReferenceId":None,
+              "PAN":None,
+              "EmailAddress":None,
+              "TelephoneNumber":None
+              }
+
+SubmitSubscription = {
                     "Subscription":Subscription,
                     "PaymentData":{
                                    "PaymentType":"NotSet",
@@ -50,11 +57,29 @@ SaveSubscription = {
                                    "PaymentAccountExpiration":None,
                                    "PaymentAccountDataToken":None
                                     },
-                    "CustomerId":{
-                                  "CustomerReferenceId":None,
-                                  "PAN":None,
-                                  "EmailAddress":None,
-                                  "TelephoneNumber":None
-                                  },
+                    "CustomerId":CustomerId,
                     "Scope":"NotSet"                    
                     }
+
+UpdateSubscriptionState = {
+                           "SubscriptionState":"NotSet"                           
+                           }
+
+QuerySubscriptions = {
+                      "QueryParameters":{
+                                         "CreatedDate":{
+                                                        "StartDate":"2016-05-02T17:25:55.262Z",
+                                                        "EndDate":"2016-05-02T17:25:55.262Z"
+                                                        },
+                                         "SubscriptionReferenceId":None,
+                                         "SubscriptionState":"NotSet",
+                                         "CustomerId":CustomerId,
+                                         "MerchantProfileIds":None
+                                         },
+                      "MerchantProfileId":None,
+                      "Scope":"NotSet",
+                      "PagingParameters":{
+                                          "Page":0,
+                                          "PageSize":50
+                                          }
+                      }

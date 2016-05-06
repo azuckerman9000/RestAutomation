@@ -15,7 +15,7 @@ MPID_Restaurant_TC = "Generic_Restaurant_TC"
 
 Subscriptions = {                 
                  "Sub1":{
-                        "CustomerId":None,
+                        "PAN":"400300XXXXXX6781",
                         "MerchantProfileId":"Generic_Ecomm_HC",
                         "Description":"TrainsPlanesEtc",
                         "SubscriptionReferenceId":"1234",
@@ -25,7 +25,7 @@ Subscriptions = {
                         "IntervalLength":"1",
                         "NextProcessingDate":"2016-05-20T14:35:11.497Z",
                         "TotalInvoices":"12",
-                        "TotalTrialInvoices":None,
+                        "TotalTrialInvoices":"0",
                         "Amount":10.00,
                         "TrialAmount":0.0,
                         "Order":{
